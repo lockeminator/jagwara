@@ -1,0 +1,32 @@
+html, body {margin: 0; padding: 0;}
+html{   
+    font-family: Arial, Verdana, sans-serif;
+    color: white;
+    background-color: #000;
+
+}
+div#head, div#main, div#footer{
+    margin: 1em 2em;
+    border: thin solid #666;
+    border-radius: .75em;
+    background-color: #009;
+    padding: 1em;
+}
+div#main{
+    margin-left: 4em;
+    margin-right: 4em;
+}
+div#footer{
+    text-align: center;
+}
+div.input {
+    position: relative; 
+    height: 1.5em;
+}
+
+div.input input {
+    position: absolute;
+    top: 0;
+    left: 10em;
+   
+}
