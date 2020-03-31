@@ -1,32 +1,58 @@
-html, body {margin: 0; padding: 0;}
-html{   
+html, body{
+    margin: 0; 
+    padding: 0;
+}
+html{
     font-family: Arial, Verdana, sans-serif;
-    color: green;
-    background-color: #000;
-
+    background-color: black;
+}
+#page{
+    margin:0 auto;
+    width: 800px;
+}
+div#head{
+    text-align:center;
+    margin-bottom: 5px;
 }
 div#head, div#main, div#footer{
-    margin: 1em 2em;
-    border: thin solid #666;
-    border-radius: .75em;
-    background-color: #009;
+    margin: 1em 0;
+    background-color: white;
     padding: 1em;
 }
 div#main{
-    margin-left: 4em;
-    margin-right: 4em;
+    /* leer */
 }
 div#footer{
     text-align: center;
 }
-div.input {
-    position: relative; 
+div#main form{
+    background: #aaa;
+    padding: 10px;
+}
+div.input{
+    position: relative;
     height: 1.5em;
 }
-
-div.input input {
+div.input input{
     position: absolute;
     top: 0;
-    left: 10em;
-   
+    left: 7em;
+}
+div.radiobuttongroup label {
+    padding-left: 2.5em;
+}
+div.buttonrow input {
+	padding: 5px 10px;
+        cursor: pointer;
+}
+.img{
+    float: left;
+    padding: 0 10px 5px 0;
+}
+.debugArr{
+    color:#CFFF61;
+    padding: 20px;
+}
+.errString{
+    color:red;
 }
