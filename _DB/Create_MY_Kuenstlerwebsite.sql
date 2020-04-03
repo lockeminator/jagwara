@@ -13,18 +13,18 @@ START TRANSACTION;
 USE tid4_kuenstlerdb_20ss;
 
 CREATE TABLE Kunde (
-Kunden_ID             INT                          UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+Kunden_ID             INT                             UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
 Anrede                ENUM('Herr', 'Frau', 'Divers')  NOT NULL DEFAULT 'Divers',
 Titel                 VARCHAR(20)                     DEFAULT NULL,
 Vorname               VARCHAR(40)                     NOT NULL,
 Nachname              VARCHAR(60)                     NOT NULL,
 Strasse               TINYTEXT                        NOT NULL,  
-PLZ                   SMALLINT                             NOT NULL,
+PLZ                   SMALLINT                        NOT NULL,
 Ort                   TINYTEXT                        NOT NULL
 );
 
 CREATE TABLE Kuenstler (
-Kunden_ID             INT                    UNSIGNED PRIMARY KEY NOT NULL,
+Kunden_ID             INT                       UNSIGNED PRIMARY KEY NOT NULL,
 Kuenstlername         VARCHAR(20)               DEFAULT NULL,
 IBAN                  VARCHAR(34)               NOT NULL,
 BIC                   VARCHAR(11)               NOT NULL,
@@ -32,7 +32,7 @@ FOREIGN KEY ( Kunden_ID )   REFERENCES Kunde ( Kunden_ID )
 );
 
 CREATE TABLE Kunstwerk (
-Kunden_ID             INT                       UNSIGNED NOT NULL,
+Kunden_ID             INT                       UNSIGNED DEFAULT NULL,
 Kuenstler_ID          INT                       UNSIGNED NOT NULL,
 Kunstwerk_ID          INT                       UNSIGNED PRIMARY KEY NOT NULL,
 Titel                 VARCHAR(120)              NOT NULL,
@@ -53,13 +53,13 @@ FOREIGN KEY ( Kuenstler_ID )   REFERENCES Kuenstler ( Kunden_ID )
 
 CREATE TABLE Kontaktart (
 Art_ID                SMALLINT                 UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-Bezeichnung           TINYTEXT                     NOT NULL
+Bezeichnung           TINYTEXT                 NOT NULL
 );
 
 CREATE TABLE Kontakt (
 Art_ID                SMALLINT                 UNSIGNED NOT NULL,
 Kunden_ID             INT                      UNSIGNED NOT NULL,
-Kontakt_ID            SMALLINT                 UNSIGNED PRIMARY KEY NOT NULL,
+Kontakt_ID            SMALLINT                 UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
 Kontakt               TINYTEXT                 NOT NULL,
 Bemerkung             TEXT                     DEFAULT NULL,
 FOREIGN KEY ( Kunden_ID )   REFERENCES Kunde ( Kunden_ID ),
