@@ -7,10 +7,10 @@
 DROP DATABASE IF EXISTS tid4_kuenstlerdb_20ss;
 CREATE DATABASE IF NOT EXISTS tid4_kuenstlerdb_20ss
 DEFAULT CHARACTER SET "utf8";
-
-START TRANSACTION;
-
 USE tid4_kuenstlerdb_20ss;
+-- START TRANSACTION
+
+
 
 CREATE TABLE Kunde (
 Kunden_ID             INT                             UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -39,7 +39,7 @@ Titel                 VARCHAR(120)              NOT NULL,
 Image                 TINYTEXT                  NOT NULL,
 Hoehe                 SMALLINT                  NOT NULL,
 Breite                SMALLINT                  NOT NULL,
-Preis                 INT                       NOT NULL,
+Preis                 FLOAT                     NOT NULL,
 Kauf_IP               VARCHAR(39)               DEFAULT NULL,
 Kauf_Zeitstempel      DATETIME                  DEFAULT NULL,
 Einstell_IP           VARCHAR(39)               NOT NULL,
@@ -68,37 +68,38 @@ FOREIGN KEY ( Art_ID )      REFERENCES Kontaktart ( Art_ID )
 
 CREATE TABLE Kategorie (
 Kategorie_ID          SMALLINT                 UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-Beschreibung          VARCHAR(2048)	           DEFAULT NULL,
-Stilrichtung          VARCHAR(60)	             NOT NULL
+Beschreibung          VARCHAR(2048)            DEFAULT NULL,
+Stilrichtung          VARCHAR(60)              NOT NULL
 );
 
 CREATE TABLE Login (
 Kunden_ID             INT                      UNSIGNED PRIMARY KEY NOT NULL,
 Login                 TINYTEXT                 NOT NULL,
-reg_Timestamp	        TIMESTAMP                NOT NULL DEFAULT CURRENT_TIMESTAMP,
+reg_Timestamp         TIMESTAMP                NOT NULL DEFAULT CURRENT_TIMESTAMP(),
 reg_IP                VARCHAR(39)              NOT NULL,
-Passwort              CHAR(64)	               NOT NULL,
-FOREIGN KEY (Kunden_ID)     REFERENCES Kunde (Kunden_ID)
+Passwort              CHAR(64)                 NOT NULL,
+FOREIGN KEY ( Kunden_ID )   REFERENCES Kunde ( Kunden_ID )
 );
 
 CREATE TABLE eingeordnet (
 Kunstwerk_ID          INT                      UNSIGNED NOT NULL,
 Kategorie_ID          SMALLINT                 UNSIGNED NOT NULL,
-PRIMARY KEY	(Kunstwerk_ID, Kategorie_ID),	
-	CONSTRAINT	FrKey_eingeordnet_Kunstwerk_ID 
-		FOREIGN KEY (Kunstwerk_ID) REFERENCES Kunstwerk (Kunstwerk_ID),
-	CONSTRAINT	FrKey_eingeordnet_Kategorie_ID 
-		FOREIGN KEY (Kategorie_ID) REFERENCES Kategorie (Kategorie_ID)
+PRIMARY KEY (Kunstwerk_ID, Kategorie_ID), 
+  CONSTRAINT  FrKey_eingeordnet_Kunstwerk_ID 
+    FOREIGN KEY (Kunstwerk_ID) REFERENCES Kunstwerk (Kunstwerk_ID),
+  CONSTRAINT  FrKey_eingeordnet_Kategorie_ID 
+    FOREIGN KEY (Kategorie_ID) REFERENCES Kategorie (Kategorie_ID)
 );
+
+
+
+
 
 -- DROP USER Kunstadmin;
 GRANT USAGE ON tid4_kuenstlerdb_20ss.* TO Kunstadmin@'%' IDENTIFIED BY 'B0SSM4N$J4;&0N';
 GRANT USAGE ON tid4_kuenstlerdb_20ss.* TO Kunstadmin@'localhost' IDENTIFIED BY 'B0SSM4N';
 GRANT ALL ON tid4_kuenstlerdb_20ss.* TO Kunstadmin@'%' WITH GRANT OPTION;
 GRANT ALL ON tid4_kuenstlerdb_20ss.* TO Kunstadmin@'localhost' WITH GRANT OPTION;
-
-
-
 
 -- DROP USER KunstGAST;
 GRANT USAGE ON tid4_kuenstlerdb_20ss.* TO KunstGast@'%' IDENTIFIED BY 'gast';
@@ -162,4 +163,4 @@ GRANT INSERT          ON tid4_kuenstlerdb_20ss.Kunde                 TO KunstLog
 GRANT SELECT, UPDATE, INSERT ON tid4_kuenstlerdb_20ss.Login          TO KunstLogin@'localhost';
 
 
-COMMIT;
+-- COMMIT;
