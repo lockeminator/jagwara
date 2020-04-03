@@ -53,7 +53,7 @@ FOREIGN KEY ( Kuenstler_ID )   REFERENCES Kuenstler ( Kunden_ID )
 
 CREATE TABLE Kontaktart (
 Art_ID                SMALLINT                 UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-Bezeichnung           TEXT                     NOT NULL
+Bezeichnung           TINYTEXT                     NOT NULL
 );
 
 CREATE TABLE Kontakt (
