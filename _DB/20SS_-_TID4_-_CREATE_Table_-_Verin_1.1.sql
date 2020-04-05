@@ -35,9 +35,9 @@ CREATE TABLE Kunde (
 	Strasse               TINYTEXT                        NOT NULL,  
 	PLZ                   SMALLINT                        NOT NULL,
 	Ort                   TINYTEXT                        NOT NULL
-) ENGINE = MyISAM;  
--- MyISAM - waere die Alternatibe zu INNODB, ist aber eher fuer sehr grosse Systeme
---			 - dafuer werden "on update cascade", "on delete cascade" und "begin transaction" nicht unterstuetzt
+) ENGINE = MyISAM;
+-- INNODB - ist eher fuer grosse Systeme
+--			 - ist aber nötig, um "on update cascade", "on delete cascade" und "begin transaction" nutzen zu können
 
 CREATE TABLE Kuenstler (
 	Kunden_ID             INT                       UNSIGNED PRIMARY KEY NOT NULL,
