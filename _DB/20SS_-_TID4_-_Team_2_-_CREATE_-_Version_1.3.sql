@@ -112,3 +112,103 @@ CREATE TABLE eingeordnet (
 # ####################################################################################################
 # >>>>>>>>>>>>>>>>>>>>>> Berechtigungen (GRANT)
 # ####################################################################################################
+
+DROP USER IF EXISTS Kunst_admin;
+ 				
+CREATE USER IF NOT EXISTS 'Kunst_admin'@'%' 						IDENTIFIED BY 'B0SSM4N$J4;&0N';
+CREATE USER IF NOT EXISTS 'Kunst_admin'@'localhost' 		IDENTIFIED BY 'B0SSM4N';
+GRANT ALL 							ON tid4_kuenstlerdb_20ss.* 				TO Kunst_admin@'%' 				WITH GRANT OPTION;
+GRANT ALL 							ON tid4_kuenstlerdb_20ss.* 				TO Kunst_admin@'localhost' 		WITH GRANT OPTION;
+
+DROP USER IF EXISTS Kunst_GAST;
+CREATE USER IF NOT EXISTS 'Kunst_Gast'@'%' 					IDENTIFIED BY 'gast';
+CREATE USER IF NOT EXISTS 'Kunst_Gast'@'localhost' 		IDENTIFIED BY 'gast';
+
+GRANT SELECT (Kunden_ID, Kuenstlername) ON tid4_kuenstlerdb_20ss.Kuenstler
+      TO Kunst_Gast@'%', Kunst_Gast@'localhost';
+
+GRANT SELECT (Kuenstler_ID, Kunstwerk_ID, Titel, Image, Hoehe, Breite, Preis, Kauf_Zeitstempel, Einstell_Zeitstempel, Gewicht, Beschreibung, Herstelldatum) ON tid4_kuenstlerdb_20ss.Kunstwerk
+      TO Kunst_Gast@'%', Kunst_Gast@'localhost';
+
+GRANT SELECT ON tid4_kuenstlerdb_20ss.Kategorie
+      TO Kunst_Gast@'%', Kunst_Gast@'localhost';
+
+GRANT SELECT ON tid4_kuenstlerdb_20ss.eingeordnet
+      TO Kunst_Gast@'%', Kunst_Gast@'localhost';
+
+
+
+DROP USER IF EXISTS Kunst_Kunde;
+CREATE USER IF NOT EXISTS 'Kunst_Kunde'@'%' 						IDENTIFIED BY '$$zahlender$$Kunde$$';
+CREATE USER IF NOT EXISTS 'Kunst_Kunde'@'localhost' 		IDENTIFIED BY '$$zahlender§§Kunde$$';
+
+GRANT SELECT (Kunden_ID, Kuenstlername) ON tid4_kuenstlerdb_20ss.Kuenstler
+      TO Kunst_Kunde@'%', Kunst_Kunde@'localhost';
+GRANT SELECT (Kunden_ID, Kuenstler_ID, Kunstwerk_ID, Titel, Image, Hoehe, Breite, Preis, Kauf_Zeitstempel, Einstell_Zeitstempel, Gewicht, Beschreibung, Herstelldatum) ON tid4_kuenstlerdb_20ss.Kunstwerk
+      TO Kunst_Kunde@'%', Kunst_Kunde@'localhost';
+GRANT SELECT, INSERT, DELETE ON tid4_kuenstlerdb_20ss.Kontakt
+      TO Kunst_Kunde@'%', Kunst_Kunde@'localhost';
+GRANT UPDATE (Art_ID, Kontakt, Bemerkung ) ON tid4_kuenstlerdb_20ss.Kontakt
+      TO Kunst_Kunde@'%', Kunst_Kunde@'localhost';
+GRANT SELECT ON tid4_kuenstlerdb_20ss.Kontaktart
+      TO Kunst_Kunde@'%', Kunst_Kunde@'localhost';
+GRANT SELECT, UPDATE ON tid4_kuenstlerdb_20ss.Kunde
+      TO Kunst_Kunde@'%', Kunst_Kunde@'localhost';
+GRANT SELECT ON tid4_kuenstlerdb_20ss.Kategorie
+			TO Kunst_Kunde@'%', Kunst_Kunde@'localhost';
+GRANT SELECT ON tid4_kuenstlerdb_20ss.eingeordnet
+      TO Kunst_Kunde@'%', Kunst_Kunde@'localhost';
+
+
+DROP USER IF EXISTS Kunst_Kunstler;
+CREATE USER IF NOT EXISTS 'Kunst_Kuenstler'@'%' 						IDENTIFIED BY '$$zahlender$$Kunde$$';
+CREATE USER IF NOT EXISTS 'Kunst_Kuenstler'@'localhost' 		IDENTIFIED BY '$$zahlender§§Kunde$$';
+
+GRANT SELECT ON tid4_kuenstlerdb_20ss.Kuenstler
+      TO Kunst_Kuenstler@'%', Kunst_Kuenstler@'localhost';
+
+GRANT UPDATE (Kuenstlername, IBAN, BIC) ON tid4_kuenstlerdb_20ss.Kuenstler
+      TO Kunst_Kuenstler@'%', Kunst_Kuenstler@'localhost';
+
+GRANT SELECT, INSERT, DELETE ON tid4_kuenstlerdb_20ss.Kunstwerk
+      TO Kunst_Kuenstler@'%', Kunst_Kuenstler@'localhost';
+
+GRANT UPDATE ( Titel, Image, Hoehe, Breite, Preis, Gewicht, Beschreibung, Herstelldatum) ON tid4_kuenstlerdb_20ss.Kunstwerk
+      TO Kunst_Kuenstler@'%', Kunst_Kuenstler@'localhost';
+
+GRANT SELECT, INSERT, DELETE ON tid4_kuenstlerdb_20ss.Kontakt
+      TO Kunst_Kuenstler@'%', Kunst_Kuenstler@'localhost';
+
+GRANT UPDATE (Art_ID, Kontakt, Bemerkung ) ON tid4_kuenstlerdb_20ss.Kontakt
+      TO Kunst_Kuenstler@'%', Kunst_Kuenstler@'localhost';
+
+GRANT SELECT ON tid4_kuenstlerdb_20ss.Kontaktart
+      TO Kunst_Kuenstler@'%', Kunst_Kuenstler@'localhost';
+
+GRANT SELECT, UPDATE ON tid4_kuenstlerdb_20ss.Kunde
+      TO Kunst_Kuenstler@'%', Kunst_Kuenstler@'localhost';
+
+GRANT SELECT ON tid4_kuenstlerdb_20ss.Kategorie
+      TO Kunst_Kuenstler@'%', Kunst_Kuenstler@'localhost';
+
+GRANT SELECT ON tid4_kuenstlerdb_20ss.eingeordnet
+      TO Kunst_Kuenstler@'%', Kunst_Kuenstler@'localhost';
+
+
+DROP USER IF EXISTS Kunst_Login;
+CREATE USER IF NOT EXISTS 'Kunst_Login'@'%' 						IDENTIFIED BY '$$zahlender$$Kunde$$';
+CREATE USER IF NOT EXISTS 'Kunst_Login'@'localhost' 		IDENTIFIED BY '$$zahlender§§Kunde$$';
+
+GRANT INSERT ON tid4_kuenstlerdb_20ss.Kunde
+      TO Kunst_Login@'%', Kunst_Login@'localhost';
+
+GRANT SELECT, INSERT ON tid4_kuenstlerdb_20ss.Login
+      TO Kunst_Login@'%', Kunst_Login@'localhost';
+
+GRANT UPDATE (Login, Passwort) ON tid4_kuenstlerdb_20ss.Login
+      TO Kunst_Login@'%', Kunst_Login@'localhost';
+
+
+
+
+
