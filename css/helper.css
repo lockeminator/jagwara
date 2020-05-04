@@ -1,0 +1,43 @@
+#home-bg{
+    background-image: url(../img/layout/bg-ananas-tapete-fix.png) ;
+    background-attachment:fixed;
+}
+.shopWindow{
+    min-height: 400px; 
+    position: relative;
+    background-image: url(../img/layout/bg-ananas-tapete.png) ;
+    background-position: bottom center;
+    background-repeat: repeat-x;
+}
+.shopWindow > div{
+    background-image: url(../img/layout/bg-ananas-stuhl.png) ;
+    height: 400px;
+    background-repeat: no-repeat;
+}
+
+.bg-white{
+    background: rgba(255,255,255,0.5);
+}
+
+.left    { text-align: left; }
+.right   { text-align: right; }
+.center  { text-align: center; }
+.justify { text-align: justify; }   /* Block */
+.start   { text-align: start; }
+.end     { text-align: end; }       /* erbt die Ausrichtung vom Elternelement */
+.redFlag{
+    color:#f00;
+}
+.img-left{
+    float: left;
+    margin: 5px 15px 15px 0;
+}
+
+.debugInfo, .debugErr{
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+}
+.debugInfo span, .debugErr span{ font-weight: bold;}
+.debugInfo{ background: yellow;}
+.debugErr{ background: red; color: white; }

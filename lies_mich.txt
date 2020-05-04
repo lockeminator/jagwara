@@ -1,0 +1,24 @@
+
+Die Webseite wurde unter Verwendung von PHP realisiert. 
+Auf einen Testserver mit XAMPP/LAMP kann verzichtet werden. 
+
+=================================================================
+
+:: Eine exakte Kopie befindet sich auf:
+
+	website:	http://kunst.technikerschule.bplaced.net/
+
+=================================================================
+
+:: FTP-Login:
+	
+	FTP-Server	technikerschule.bplaced.net
+	Benutzer	technikerschule_van
+	PW		19WS_TED3
+	Port: 		[leer lassen]
+
+=================================================================
+
+:: Rückfragen:
+
+	email: 		christian.vietzke@gmx.de
