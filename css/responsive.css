@@ -1,0 +1,183 @@
+@charset "UTF-8";
+
+/***My Grit System*** 1000px fehlt*/
+
+/*Tablets*/
+@media only screen and (min-width: 700px){
+    .col-sm-1 {width: 8.33%;}
+    .col-sm-2 {width: 16.66%;}
+    .col-sm-3 {width: 25%;}
+    .col-sm-4 {width: 33.33%;}
+    .col-sm-5 {width: 41.66%;}
+    .col-sm-6 {width: 50%;}
+    .col-sm-7 {width: 58.33%;}
+    .col-sm-8 {width: 66.66%;}
+    .col-sm-9 {width: 75%;}
+    .col-sm-10 {width: 83.33%;}
+    .col-sm-11 {width: 91.66%;}
+    .col-sm-12 {width: 100%;}
+    .container {
+	width: 670px;
+    }
+}
+@media only screen and (max-width: 1000px){
+    .hidden-sm{
+        display: none;
+    }
+}
+@media only screen and (min-width: 1000px){
+    .col-md-1 {width: 8.33%;}
+    .col-md-2 {width: 16.66%;}
+    .col-md-3 {width: 25%;}
+    .col-md-4 {width: 33.33%;}
+    .col-md-5 {width: 41.66%;}
+    .col-md-6 {width: 50%;}
+    .col-md-7 {width: 58.33%;}
+    .col-md-8 {width: 66.66%;}
+    .col-md-9 {width: 75%;}
+    .col-md-10 {width: 83.33%;}
+    .col-md-11 {width: 91.66%;}
+    .col-md-12 {width: 100%;}
+    .container {
+	width: 970px;
+    }
+}
+/* desktop */
+@media only screen and (min-width: 1200px){
+    .col-lg-1 {width: 8.33%;}
+    .col-lg-2 {width: 16.66%;}
+    .col-lg-3 {width: 25%;}
+    .col-lg-4 {width: 33.33%;}
+    .col-lg-5 {width: 41.66%;}
+    .col-lg-6 {width: 50%;}
+    .col-lg-7 {width: 58.33%;}
+    .col-lg-8 {width: 66.66%;}
+    .col-lg-9 {width: 75%;}
+    .col-lg-10 {width: 83.33%;}
+    .col-lg-11 {width: 91.66%;}
+    .col-lg-12 {width: 100%;}
+    .container {
+	width: 1170px;
+    }
+    .hidden-lg{
+        display:none;
+    }
+}
+/* mobile phones: */
+@media only screen and (max-width: 700px) {   
+    [class*="col-"] {
+        width: 100%;
+    }
+    .container {
+	width: 100%;
+    }
+    .hidden-xs{
+        display:none;
+    }
+}
+/*Alle Boxen Floaten lassen*/
+[class*="col-"] {
+    float: left;
+}
+
+
+.row img {
+    width: 100%;
+    padding:1em;
+}
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.container {
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.zero{
+    padding-right: 0;
+    padding-left:  0;
+}
+/* Ende Grit System*/
+
+@media screen and (min-width: 768px) {
+     /* CSS-Regeln hier rein */
+}
+@media screen and (max-width: 769px) {
+    
+}
+@media screen and (max-width: 992px) {
+ 
+}
+@media screen and (max-width: 1200px) {
+    #stage_header_vertivcal ul li{
+        display: block;
+    }
+    #eingabe {
+        width:100%
+    }
+    .buttonRouteBerechnen{
+        float:right;
+    }
+}
+/* Hoch */
+@media all and (orientation:portrait) {
+    /* CSS-Regeln hier rein */
+}
+/* Quer */
+@media all and (orientation:landscape) {
+    /* CSS-Regeln hier rein */
+}
+/* max 480px */
+@media screen and (max-device-width: 480px) {
+    /* CSS-Regeln hier rein */
+}
+@media print {
+    * { 
+        background: transparent !important; 
+        color: #444 !important; 
+        text-shadow: none !important;
+    }
+    a, a:visited { 
+        color: #444 !important; 
+        text-decoration: underline; 
+    }
+    a:after { 
+        content: " (" attr(href) ")"; 
+    }
+
+    abbr:after { 
+        content: " (" attr(title) ")"; }
+
+    .ir a:after { 
+        content: ""; }
+
+    pre, blockquote { 
+            border: 1px solid #999; 
+            page-break-inside: avoid;
+    }
+
+    thead { 
+        display: table-header-group;
+    }
+
+    tr, img { 
+        page-break-inside: avoid;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2, h3 {
+        page-break-after: avoid;
+    }
+}
