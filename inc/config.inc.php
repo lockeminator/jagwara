@@ -14,7 +14,7 @@ define('PATH', dirname($_SERVER['SCRIPT_FILENAME']));
 # Konstanten für DB Aufbau
 # #################################################
     
-define ( "__MYDEBUG__", 1 );
+define ( "__MYDEBUG__", true );
 define ( "__INC_DBFUNCS__", 1 );
 define ( "KUNST_HOST", "localhost" );
 define ( "KUNST_DB",   "20ss_tid4_kuenstlerdb" );
@@ -52,7 +52,7 @@ function navigation( $page ){
     switch( $page ){
         case "home": $file = "home.tpl.php";
             break;
-        case "kunstwerke": $file = "kunstwerke.tpl.php";
+        case "kunstwerke": $file = "kunstwerke.php";
             break;
         case "kuenstler": $file = "kuenstler.tpl.php";
             break;
@@ -77,7 +77,7 @@ function navigation( $page ){
 }
 
 $file = navigation( $page );
-        
+
 
 
 ?>
