@@ -1,15 +1,34 @@
 <?php
 // Model SQL
 // Nicht die Funktionsbeschreibungen vergessen: Brief param etc usw
+
+
+
+
+
 function htmlOutput( $aKategorien ){
     $output = '';
     foreach( $aKategorien AS $kat ){
         if($kat['Anzahl'] > '0')
+<<<<<<< Updated upstream
         	$output .= '<li><a href="index.php?page=kunstwerke&sort=neu&menu=stil&auswahl='. $kat['Stilrichtung'] .'">' . $kat['Stilrichtung'] . '<span>('.$kat['Anzahl'].')</span></a> </li>'."\n\t\t\t\t";
+=======
+        	$output .= '<li><a href="index.php?page=kunstwerke&menu=stil&auswahl='. $kat['Stilrichtung'] .'">' . $kat['Stilrichtung'] . '<span>('.$kat['Anzahl'].')</span></a> </li>'."\n\t\t\t\t";
     }
     return $output;
 }
 
+function htmllistOutput( $aKategorien ){
+    $output = '';
+    foreach( $aKategorien AS $kat ){
+    	if($kat['Anzahl'] > '0')
+        	$output .= '<li><a href="index.php?page=kunstwerke&menu=kuenstler&auswahl='. $kat['Kuenstlername'] .'">' . $kat['Kuenstlername'] . '<span>('.$kat['Anzahl'].')</span></a> </li>'."\n\t\t\t\t";
+>>>>>>> Stashed changes
+    }
+    return $output;
+}
+
+<<<<<<< Updated upstream
 function htmllistOutput( $aKategorien ){
     $output = '';
     foreach( $aKategorien AS $kat ){
@@ -19,6 +38,8 @@ function htmllistOutput( $aKategorien ){
     return $output;
 }
 
+=======
+>>>>>>> Stashed changes
 function htmlimgOutput( $aKunstwerke ) {
     $output = '';
     foreach( $aKunstwerke AS $kwe ){
@@ -38,6 +59,7 @@ function htmlimgOutput( $aKunstwerke ) {
 
     										// '. $kwe['Titel'] .'
     }
+<<<<<<< Updated upstream
   
                   
     
@@ -45,4 +67,23 @@ function htmlimgOutput( $aKunstwerke ) {
     return $output;
 }
 
+=======
+    return $output;
+}
+
+/*! \brief Erstellt ein Div zur Darstellung von Fehlermeldungen
+
+  \param $title Der Titel der Fehlermeldung als string
+
+  \return ein String, der das Komplette Fehlerdic für die HTML-Seite beschreibt
+
+ */
+function ErrorDiv( $title )
+{
+  return  "\n  <div class=\"center\">".
+          "\n    <div class=\"title\">".$title."</div>".
+          "\n  </div>";
+}
+
+>>>>>>> Stashed changes
 ?>

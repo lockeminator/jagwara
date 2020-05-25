@@ -63,7 +63,7 @@ function navigation( $page ){
         case "login": $file = "login.tpl.php";
             break;
         case "logout": $file = "logout.tpl.php";
-                        session_destroy();
+                        session_destroy("Kunst");
             break;
         case "kontakt": $file = "kontakt.tpl.php";
             break;
