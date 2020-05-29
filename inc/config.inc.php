@@ -70,8 +70,12 @@ function navigation( $page ){
         case "login": $file = "login.tpl.php";
             break;
         case "logout": $file = "logout.tpl.php";
+<<<<<<< HEAD
                         session_destroy();
                         header("Location: ./index.php?page=home&".session_name()."=".session_id() );
+=======
+                        session_destroy("Kunst");
+>>>>>>> master
             break;
         case "kontakt": $file = "kontakt.tpl.php";
             break;
@@ -86,8 +90,11 @@ function navigation( $page ){
 
 $file = navigation( $page );
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> master
 
 
 ?>

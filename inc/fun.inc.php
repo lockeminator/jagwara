@@ -2,6 +2,7 @@
 // Model SQL
 // Nicht die Funktionsbeschreibungen vergessen: Brief param etc usw
 
+<<<<<<< HEAD
 function LoginComplete(){
    if ( !empty($_POST['uname']) && !empty($_POST['passw'])   )  
     {
@@ -23,6 +24,11 @@ function LoginComplete(){
     }
     else $Errorstring = "Login Daten nicht vollständig";
 }
+=======
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> master
 
 
 
@@ -77,6 +83,10 @@ function CheckLogin( $LoginArr, $Destination )
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 /*! \brief Initialisiert alle Session-Einstellungen für die Kunst-Seiten
 
     \param keine
@@ -91,6 +101,10 @@ function Kunst_Session()
 }
 
 
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> master
 /*! \brief  Gibt ein String zum einfügen in eine 
             WHERE Bedingung      
     details
@@ -111,6 +125,14 @@ function getwhere ( $menu , $auswahl ){
         case "preis" :
             $sout = ' WHERE Kunstwerk.Preis <= '. $auswahl ;
         break;
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+        
+        default : 
+            $sout = '';
+=======
+>>>>>>> master
         case "mpreis" :
             $sout = ' WHERE Kunstwerk.Preis >= '. $auswahl ;
         break;
@@ -132,6 +154,10 @@ function getwhere ( $menu , $auswahl ){
                     $sout = ' WHERE (Kunstwerk.Hoehe > 3500 OR Kunstwerk.Breite > 3500)';
                 break;
             }
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> master
         break;
     }
  return $sout;
@@ -152,6 +178,7 @@ function getorder ( $sort ){
         case "neu" :
             return ' Kunstwerk.Einstell_Zeitstempel,';
         break;
+<<<<<<< HEAD
     }
 }
 
@@ -166,6 +193,40 @@ function Preisspanne() {
     $minPreis = htmlentities($_POST['min']); 
     $maxPreis = htmlentities($_POST['max']);
 
+=======
+<<<<<<< Updated upstream
+        default : 
+            return;
+        break;
+    }
+}
+
+
+
+
+
+
+
+
+/*! \brief Gibt ein Array formatiert zu Debugging-Zwecken aus
+    
+    details
+=======
+    }
+}
+
+/*! \brief  Gibt ein String zum einfügen in eine 
+            SELECT abfrage      
+    details
+    
+    \param  nix
+    \return String zum einstetzen einer SQL-Abfrage 
+*/
+function Preisspanne() {
+    $minPreis = htmlentities($_POST['min']); 
+    $maxPreis = htmlentities($_POST['max']);
+
+>>>>>>> master
     if ( $minPreis === "min") $minPreis = '0.1';
     if ( $maxPreis === "max") $maxPreis = '1000000';
     
@@ -182,12 +243,30 @@ function Preisspanne() {
     else $cmaxPreis = $maxPreis;
 return ' WHERE Preis >= '. $cminPreis .' AND Preis <= '. $cmaxPreis;
 }
+>>>>>>> Stashed changes
+
+    \param $arr das auszugebende Array
+    \return nichts - reine Ausgabe
+*/
+function DebugArr( $arr )
+{
+  if ( __MYDEBUG__ == true )
+  {
+    echo "<pre>";
+    print_r( $arr ); 
+    echo "</pre>";
+  }
+}
 
 
 
 
 
+<<<<<<< HEAD
 
+
+=======
+>>>>>>> master
 /*! \brief Gibt ein Array formatiert zu Debugging-Zwecken aus
     
     details
