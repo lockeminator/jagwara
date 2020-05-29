@@ -6,29 +6,9 @@ DebugArr( $_SESSION );
 DebugArr( $_COOKIE ); 
 
 
-if (isset($_POST['loginsenden']))
-{
-     
-    if ( !empty($_POST['uname']) && !empty($_POST['passw'])   )  
-    {
-    $cluname = htmlentities($_POST['uname']);
-    $clpassw = htmlentities($_POST['passw']);
-        if (strlen($cluname) <= 64 && strlen($clpassw) <= 64)
-        {
-            $dbconn = connectKunstDB( 'login' );
-            $uid = GetUIDByLogin( $dbconn, $clpassw, $cluname );
-            if ($uid > 1 ) {
-                $_SESSION['User'] = 'isIN';
-                header("Location: ./index.php?auswahl?page=home");
-            }
-            else $Errorstring ="Benutzerkonto nicht gefunden";
-        }
-    }
-    else $Errorstring = "Login Daten nicht vollständig";
-}
+//$kontaktart = holekontaktart( $dbconn );
 
-
- ?>
+?>
 
 
 <div class="container section">
@@ -69,7 +49,7 @@ if (isset($_POST['loginsenden']))
                 <h2>Kontaktaufnahme</h2>
                 <!--//__Kontaktarten-->
 
-                    <!--//__bemerkungen-->
+                   
 
                 
                 <input type="submit" name="regsenden" value="REGRESTRIEREN" />

@@ -10,12 +10,6 @@ function htmlOutput( $aKategorien ){
     $output = '';
     foreach( $aKategorien AS $kat ){
         if($kat['Anzahl'] > '0')
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-        	$output .= '<li><a href="index.php?page=kunstwerke&sort=neu&menu=stil&auswahl='. $kat['Stilrichtung'] .'">' . $kat['Stilrichtung'] . '<span>('.$kat['Anzahl'].')</span></a> </li>'."\n\t\t\t\t";
-=======
->>>>>>> master
         	$output .= '<li><a href="index.php?page=kunstwerke&menu=stil&auswahl='. $kat['Stilrichtung'] .'">' . $kat['Stilrichtung'] . '<span>('.$kat['Anzahl'].')</span></a> </li>'."\n\t\t\t\t";
     }
     return $output;
@@ -26,29 +20,10 @@ function htmllistOutput( $aKategorien ){
     foreach( $aKategorien AS $kat ){
     	if($kat['Anzahl'] > '0')
         	$output .= '<li><a href="index.php?page=kunstwerke&menu=kuenstler&auswahl='. $kat['Kuenstlername'] .'">' . $kat['Kuenstlername'] . '<span>('.$kat['Anzahl'].')</span></a> </li>'."\n\t\t\t\t";
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> master
     }
     return $output;
 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-function htmllistOutput( $aKategorien ){
-    $output = '';
-    foreach( $aKategorien AS $kat ){
-    	if($kat['Anzahl'] > '0')
-        	$output .= '<li><a href="index.php?page=kunstwerke&sort=neu&menu=kuenstler&auswahl='. $kat['Kuenstlername'] .'">' . $kat['Kuenstlername'] . '<span>('.$kat['Anzahl'].')</span></a> </li>'."\n\t\t\t\t";
-    }
-    return $output;
-}
-
-=======
->>>>>>> Stashed changes
->>>>>>> master
 function htmlimgOutput( $aKunstwerke ) {
     $output = '';
     foreach( $aKunstwerke AS $kwe ){
@@ -57,7 +32,6 @@ function htmlimgOutput( $aKunstwerke ) {
     				"\n\t\t\t".'<img src="img/kunstwerke/orginal/'. $kwe['Image'] .'" alt="'. $kwe['Titel'] . ' von '. $kwe['Kuenstlername'] .'" title="'. $kwe['Titel'] .' von '. $kwe['Kuenstlername'] .'" />'.
     				"\n\t\t\t\t".'<p class="label-header"><span>'. $kwe['Titel'] .':</span><br />'. $kwe['Stilrichtung'] .'</p>'.
     				"\n\t\t\t\t".'<p class="label-name">'.
-<<<<<<< HEAD
     				"\n\t\t\t\t". $kwe['Kuenstlername'];
 
     	if ($kwe['Kauf_Zeitstempel'] === NULL)
@@ -69,12 +43,6 @@ function htmlimgOutput( $aKunstwerke ) {
             $output .=  "\n\t\t\t\t\t".'<span class="isOut">SOLD</span>';
     	}		
         $output .=  "\n\t\t\t\t".'</p>'.
-=======
-    				"\n\t\t\t\t". $kwe['Kuenstlername'].
-    				"\n\t\t\t\t\t".'<span class="isIn">'. $kwe['Preis'] .'</span>'.
-    				"\n\t\t\t\t\t".'<span class="isOut">'. $kwe['Kauf_Zeitstempel'] .'</span>'.
-    				"\n\t\t\t\t".'</p>'.
->>>>>>> master
     				"\n\t\t\t".'</a>'.
     				"\n\t\t".'</div>'
     				;
@@ -82,21 +50,9 @@ function htmlimgOutput( $aKunstwerke ) {
 
     										// '. $kwe['Titel'] .'
     }
-<<<<<<< Updated upstream
-  
-                  
-    
-    
     return $output;
 }
 
-<<<<<<< HEAD
-=======
-=======
-    return $output;
-}
-
->>>>>>> master
 /*! \brief Erstellt ein Div zur Darstellung von Fehlermeldungen
 
   \param $title Der Titel der Fehlermeldung als string
@@ -111,8 +67,4 @@ function ErrorDiv( $title )
           "\n  </div>";
 }
 
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> master
 ?>

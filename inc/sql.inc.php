@@ -2,11 +2,6 @@
 // Model SQL
 // Nicht die Funktionsbeschreibungen vergessen: Brief param etc usw
 
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> master
 
 
 
@@ -20,10 +15,6 @@
     \return eine UserID als Ganzzahl im Erfolgsfall
             NULL sonst
 */
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> master
 // Hole die Stil Richtungen
 function holeStielrichtung( $dbconn ){       // SQL-Abfrage zusammenbasteln
 
@@ -43,12 +34,6 @@ function holeStielrichtung( $dbconn ){       // SQL-Abfrage zusammenbasteln
 //        DebugArr( $array, '$ds' );
     return $array;
 }
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-
-=======
->>>>>>> master
 /*! \brief Holt eine UserID anhand der Login-Daten aus der DB
 
     \param $dbconn eine gültige DB-Verbindung vom Typ mysqli
@@ -56,10 +41,6 @@ function holeStielrichtung( $dbconn ){       // SQL-Abfrage zusammenbasteln
     \return eine UserID als Ganzzahl im Erfolgsfall
             NULL sonst
 */
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> master
 // Hole die Künstler 
 function holeKuenstler( $dbconn ){       // SQL-Abfrage zusammenbasteln
 
@@ -79,12 +60,6 @@ function holeKuenstler( $dbconn ){       // SQL-Abfrage zusammenbasteln
  //       DebugArr( $array, '$ds' );
     return $array;
 }
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-
-=======
->>>>>>> master
 /*! \brief Holt eine UserID anhand der Login-Daten aus der DB
 
     \param $dbconn eine gültige DB-Verbindung vom Typ mysqli
@@ -92,13 +67,24 @@ function holeKuenstler( $dbconn ){       // SQL-Abfrage zusammenbasteln
     \return eine UserID als Ganzzahl im Erfolgsfall
             NULL sonst
 */
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> master
 // Hole die Kunstwerke 
-function holeKunstwerke( $dbconn , $WhereString , $OrderString ){       // SQL-Abfrage zusammenbasteln
-  
+function holeKunstwerke( $dbconn ){       // SQL-Abfrage zusammenbasteln
+
+if (isset($_GET['menu'])){
+    $WhereString = getwhere( $_GET['menu'], $_GET['auswahl']);
+}
+else {
+    $WhereString = '';
+}
+
+if (isset($_GET['sort'])){
+    $OrderString = getorder( $_GET['sort'] );
+}
+else {
+    $OrderString = '';
+}
+if (isset($_POST['PreisAbsenden'])) $WhereString = Preisspanne();
+
 // 2 SQL-String zusammenbasteln
 $sSQL = <<<CHEAT
 SELECT  Kunstwerk.Titel,
@@ -106,38 +92,16 @@ SELECT  Kunstwerk.Titel,
         Kunstwerk.Kauf_Zeitstempel, 
         Kunstwerk.Preis, 
         Kategorie.Stilrichtung,
-<<<<<<< HEAD
         kuenstler.Kuenstlername,
         Kunstwerk.Breite,
         Kunstwerk.Hoehe
-=======
-<<<<<<< Updated upstream
-        kuenstler.Kuenstlername
-=======
-        kuenstler.Kuenstlername,
-        Kunstwerk.Breite,
-        Kunstwerk.Hoehe
->>>>>>> Stashed changes
->>>>>>> master
 FROM eingeordnet    INNER JOIN Kategorie ON eingeordnet.Kategorie_ID = Kategorie.Kategorie_ID
                     INNER JOIN Kunstwerk ON eingeordnet.Kunstwerk_ID = Kunstwerk.Kunstwerk_ID
                     INNER JOIN kuenstler ON Kunstwerk.Kuenstler_ID = kuenstler.Kunden_ID
 CHEAT;
-<<<<<<< HEAD
     $sSQL .= $WhereString;
     $sSQL .= ' ORDER BY'. $OrderString .' Kunstwerk.Kunstwerk_ID' ;
     // print($sSQL);
-=======
-<<<<<<< Updated upstream
-$sSQL .= $WhereString;
-$sSQL .= ' ORDER BY'. $OrderString .' Kunstwerk.Kunstwerk_ID' ;
-print($sSQL);
-=======
-    $sSQL .= $WhereString;
-    $sSQL .= ' ORDER BY'. $OrderString .' Kunstwerk.Kunstwerk_ID' ;
-    // print($sSQL);
->>>>>>> Stashed changes
->>>>>>> master
     $erg = $dbconn->query( $sSQL );               // 3 SQL-Abfrage abschicken und 3b Ergebnis entgegennehmen
 
     if ( !$erg ){
@@ -154,12 +118,6 @@ print($sSQL);
 }
 
 
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-?>
-=======
->>>>>>> master
 /*! \brief Holt eine UserID anhand der Login-Daten aus der DB
 
     \param $dbconn eine gültige DB-Verbindung vom Typ mysqli
@@ -195,9 +153,4 @@ function GetUIDByLogin( $dbconn, $clpw, $cluser ) {
 
   return $uid;
 }
-<<<<<<< HEAD
     ?>
-=======
-    ?>
->>>>>>> Stashed changes
->>>>>>> master

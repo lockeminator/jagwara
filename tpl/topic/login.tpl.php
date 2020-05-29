@@ -6,27 +6,6 @@ DebugArr( $_POST );
 DebugArr( $_SESSION ); 
 $Errorstring = '';
 
-if (isset($_POST['loginsenden']))
-{
-    if ( !empty($_POST['uname']) && !empty($_POST['passw'])   )  
-    {
-    $cluname = htmlentities($_POST['uname']);
-    $clpassw = htmlentities($_POST['passw']);
-        if (strlen($cluname) <= 64 && strlen($clpassw) <= 64)
-        {
-            $dbconn = connectKunstDB( 'login' );
-            $uid = GetUIDByLogin( $dbconn, $clpassw, $cluname );
-            if ($uid > 1 ) {
-                $_SESSION['User'] = 'isIN';
-                $_SESSION['save']['uid'] = $uid;
-                
-                header("Location: ./index.php?".session_name()."=".session_id() );
-            }
-            else $Errorstring ="Benutzerkonto nicht gefunden";
-        }
-    }
-    else $Errorstring = "Login Daten nicht vollständig";
-}
 
 
 ?>

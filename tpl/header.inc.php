@@ -57,47 +57,27 @@ if (isset($_POST['loginsenden']))
                             <div id="nav" class="navMobile">
                                 <ul>
                                     <li id="li_home">
-<<<<<<< HEAD
                                        <a href="<?php echo getUrl();?>index.php?page=home&<?php echo SID; ?>" <?php if( $page == "home" ) echo 'class="active"'; ?> >
-=======
-                                       <a href="<?php echo getUrl();?>index.php?page=home?<?php echo SID; ?>" <?php if( $page == "home" ) echo 'class="active"'; ?> >
->>>>>>> master
                                            <span class="">&#8962;</span>
                                        </a>
                                     </li>
                                     <li id="li_kunstwerke">
-<<<<<<< HEAD
                                        <a href="<?php echo getUrl();?>index.php?page=kunstwerke&<?php echo SID; ?>" <?php if( $page == "kunstwerke" ) echo 'class="active"'; ?> >
-=======
-                                       <a href="<?php echo getUrl();?>index.php?page=kunstwerke?<?php echo SID; ?>" <?php if( $page == "kunstwerke" ) echo 'class="active"'; ?> >
->>>>>>> master
                                            <span>Kunstwerke</span>
                                        </a>
                                     </li>  
                                     <li id="li_kuenstler">
-<<<<<<< HEAD
                                        <a href="<?php echo getUrl();?>index.php?page=kuenstler&<?php echo SID; ?>" <?php if( $page == "kuenstler" ) echo 'class="active"'; ?> >
-=======
-                                       <a href="<?php echo getUrl();?>index.php?page=kuenstler?<?php echo SID; ?>" <?php if( $page == "kuenstler" ) echo 'class="active"'; ?> >
->>>>>>> master
                                            <span>Kuenstler</span>
                                        </a>
                                     </li>
                                     <li id="li_wir">
-<<<<<<< HEAD
                                        <a href="<?php echo getUrl();?>index.php?page=wir&<?php echo SID; ?>" <?php if( $page == "wir" ) echo 'class="active"'; ?> >
-=======
-                                       <a href="<?php echo getUrl();?>index.php?page=wir?<?php echo SID; ?>" <?php if( $page == "wir" ) echo 'class="active"'; ?> >
->>>>>>> master
                                            <span>&Uuml;ber uns</span>
                                        </a>
                                     </li>  
                                     <li id="li_kontakt">
-<<<<<<< HEAD
                                        <a href="<?php echo getUrl(); ?>index.php?page=kontakt&<?php echo SID; ?>" <?php if( $page == "kontakt" ) echo 'class="active"'; ?>>
-=======
-                                       <a href="<?php echo getUrl(); ?>index.php?page=kontakt?<?php echo SID; ?>" <?php if( $page == "kontakt" ) echo 'class="active"'; ?>>
->>>>>>> master
                                            <span>Kontakt</span>
                                        </a>
                                     </li>
@@ -107,11 +87,7 @@ if (isset($_POST['loginsenden']))
                                     
                                     
                                         <li id="li_logout">
-<<<<<<< HEAD
                                            <a href="<?php echo getUrl();?>index.php?page=logout&<?php echo SID; ?>">
-=======
-                                           <a href="<?php echo getUrl();?>index.php?page=logout?<?php echo SID; ?>">
->>>>>>> master
                                                <span>Logout</span>
                                            </a>
                                         </li>
@@ -119,31 +95,19 @@ if (isset($_POST['loginsenden']))
                                 <?php }else{ ?>
 
                                         <li id="li_registrieren">
-<<<<<<< HEAD
                                            <a href="<?php echo getUrl();?>index.php?page=registrieren&<?php echo SID; ?>" <?php if( $page == "registrieren" ) echo 'class="active"'; ?> >
-=======
-                                           <a href="<?php echo getUrl();?>index.php?page=registrieren?<?php echo SID; ?>" <?php if( $page == "registrieren" ) echo 'class="active"'; ?> >
->>>>>>> master
                                                <span>Registrieren</span>
                                            </a>
                                         </li>
                                         <li id="li_login">
-<<<<<<< HEAD
                                            <a href="<?php echo getUrl();?>index.php?page=login&<?php echo SID; ?>" <?php if( $page == "login" ) echo 'class="active"'; ?> >
-=======
-                                           <a href="<?php echo getUrl();?>index.php?page=login?<?php echo SID; ?>" <?php if( $page == "login" ) echo 'class="active"'; ?> >
->>>>>>> master
                                                <span>Login</span>
                                            </a>
                                         </li> 
                                 
                                 <?php } ?>
                                      <li id="li_warenkorb">
-<<<<<<< HEAD
                                        <a href="<?php echo getUrl();?>index.php?page=warenkorb&<?php echo SID; ?>" <?php if( $page == "warenkorb" ) echo 'class="active"'; ?> >
-=======
-                                       <a href="<?php echo getUrl();?>index.php?page=warenkorb?<?php echo SID; ?>" <?php if( $page == "warenkorb" ) echo 'class="active"'; ?> >
->>>>>>> master
                                            <span>&#10177; (5)</span>
                                        </a>
                                     </li>

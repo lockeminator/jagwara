@@ -73,9 +73,6 @@ function navigation( $page ){
 <<<<<<< HEAD
                         session_destroy();
                         header("Location: ./index.php?page=home&".session_name()."=".session_id() );
-=======
-                        session_destroy("Kunst");
->>>>>>> master
             break;
         case "kontakt": $file = "kontakt.tpl.php";
             break;
@@ -93,8 +90,6 @@ $file = navigation( $page );
 <<<<<<< HEAD
 
 
-=======
->>>>>>> master
 
 
 ?>
