@@ -1,4 +1,34 @@
-<?php if( !isset( $_POST['eingabe']) ){ ?>
+<?php 
+
+DebugArr( $_GET );
+DebugArr( $_POST );
+DebugArr( $_SESSION ); 
+DebugArr( $_COOKIE ); 
+
+
+if (isset($_POST['loginsenden']))
+{
+     
+    if ( !empty($_POST['uname']) && !empty($_POST['passw'])   )  
+    {
+    $cluname = htmlentities($_POST['uname']);
+    $clpassw = htmlentities($_POST['passw']);
+        if (strlen($cluname) <= 64 && strlen($clpassw) <= 64)
+        {
+            $dbconn = connectKunstDB( 'login' );
+            $uid = GetUIDByLogin( $dbconn, $clpassw, $cluname );
+            if ($uid > 1 ) {
+                $_SESSION['User'] = 'isIN';
+                header("Location: ./index.php?auswahl?page=home");
+            }
+            else $Errorstring ="Benutzerkonto nicht gefunden";
+        }
+    }
+    else $Errorstring = "Login Daten nicht vollständig";
+}
+
+
+ ?>
 
 
 <div class="container section">
@@ -7,11 +37,44 @@
         
             <div class="col-sm-6 bg-white">
             <h1 class="center">Registrieren</h1>
+                <?php if(isset($Errorstring)) echo $err = ErrorDiv($Errorstring); ?>
+
             <form method="post" action="<?php echo getUrl(); ?>index.php?page=registrieren">
-                <input type="text" name="eingabe" /> <!-- uebertragen werden nur felder mit name (name) und value (inhalt) -->
-                <input type="submit" name="absenden" value="Senden" />
+                <h2>Persönliche Angaben</h2>
+
+                <!-- // __Anrede -->
+
+                <!--//__Titel-->
+                    <div class="input">
+                        <label for="titel"><b>Titel</b></label>
+                        <input type="text" name="titel" />
+                    </div>
+                <!--//__Vorname-->
+                    <label for="vname"><b>Vorname</b></label>
+                    <input type="text" name="vname" />
+                <!--//__Nachname-->
+                    <label for="nname"><b>Nachname</b></label>
+                    <input type="text" name="nname" />
+                
+                <h2>Lieferadresse</h2>
+                <!--//__Straße hnr.-->
+                    <label for="str"><b>Straße und Hausnr.</b></label>
+                    <input type="text" name="str" />
+                <!--//__PLZ-->
+                    <label for="plz"><b>PLZ</b></label>
+                    <input type="text" name="plz" />
+                <!--//__ORT-->
+                    <label for="ort"><b>Ort</b></label>
+                    <input type="text" name="ort" />
+                <h2>Kontaktaufnahme</h2>
+                <!--//__Kontaktarten-->
+
+                    <!--//__bemerkungen-->
+
+                
+                <input type="submit" name="regsenden" value="REGRESTRIEREN" />
             </form>
-            </div>
+    
         
         <div class="col-sm-3">&nbsp;</div>
     </div>
@@ -19,7 +82,7 @@
 
 
 
-<?php }else{ ?>
+
 
         <div class="container section">
             <div class="row">
@@ -34,4 +97,3 @@
             </div>
         </div>
 
-<?php } ?>

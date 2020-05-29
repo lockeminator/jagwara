@@ -7,22 +7,32 @@
 
 // ********************************************************************************
 /*! \brief  Baut eine Datenbankverbindung zur pmg_db auf 
- *  \param  $user ein User für den DB-Zugriff (z.Z.: admin, gast)
- *  \return eine gültige DB-Verbindung vom Typ mysqli im Erfolgsfall, sondt false
+ *  \param  $user ein User für den DB-Zugriff 
+ *  \return eine gültige DB-Verbindung vom Typ mysqli im Erfolgsfall, sonst false
  ******************************************************************************** */
 
-function connectKunstDB(){
-    $user = '';
+function connectKunstDB( $user ){
+    
     
     switch ( $user ){
-        case "admin" : $user   = "admin";
-                       $passwd = "qwertz";
-                       break;
-        case "gast"  : $user   = "bob";
-                       $passwd = "passwort";
-                       break;
-        default      : $user   = "root";
-                       $passwd = NULL;
+        case "admin" :      $user   = "ss20tid4_Admin";
+                            $passwd = "B0SSM4N";
+                            break;
+        case "gast" :       $user   = "ss20tid4_Gast";
+                            $passwd = "gast";
+                            break;
+        case "kunde" :      $user   = "ss20tid4_Kunde";
+                            $passwd = "$4zahlenderKunde$4";
+                            break;
+        case "kuenstler" :  $user   = "ss20tid4_Kuenst";
+                            $passwd = "$4zahlender$4Kuenstler$4";
+                            break;
+        case "login" :      $user   = "ss20tid4_Login";
+                            $passwd = "neuer$4zahlender$4Kunde$4";
+                            break;
+        default :           $user   = "";
+                            $passwd = NULL;
+                            break;
 //  DB Daten für bplaced                   
 //        default      : $user   = "technikerschule";
 //                       $passwd = "123asd";

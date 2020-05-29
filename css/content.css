@@ -19,14 +19,14 @@ figure{
 .label-name{
     color:#aaa;
 }
-.isIn, .isIn{
+.isIn, .isOut{
     float: right;
 }
 .isIn{
     color:#00ff00;
 }
 .isOut{
-    display:none;
+
     color:red;
 }
 
