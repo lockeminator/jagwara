@@ -67,6 +67,10 @@ function navigation( $page ){
             break;
         case "registrieren": $file = "registrieren.tpl.php";
             break;
+        
+        case "KuenstlerStatus": $file = "kunststatus.tpl.php";
+            break;
+        
         case "login": $file = "login.tpl.php";
             break;
         case "logout": $file = "logout.tpl.php";

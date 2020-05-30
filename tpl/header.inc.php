@@ -1,10 +1,11 @@
 <?php 
 
 if (isset($_POST['loginsenden']))
-{
     $Errorstring = LoginComplete();
 
-}
+if(isset($_POST['regsenden']))
+    $Errorstring = Registrieren( );
+
 
 ?>
 
@@ -84,7 +85,12 @@ if (isset($_POST['loginsenden']))
                                 </ul>
                                 <ul>
                                 <?php if( isset($_SESSION['User']) && isset($_SESSION['User']) == 'isIn'){?>
-                                    
+                                        
+                                        <li id="li_registrieren">
+                                           <a href="<?php echo getUrl();?>index.php?page=registrieren&<?php echo SID; ?>" <?php if( $page == "registrieren" ) echo 'class="active"'; ?> >
+                                               <span>Status-Update</span>
+                                           </a>
+                                        </li>
                                     
                                         <li id="li_logout">
                                            <a href="<?php echo getUrl();?>index.php?page=logout&<?php echo SID; ?>">

@@ -3,10 +3,79 @@
 // Nicht die Funktionsbeschreibungen vergessen: Brief param etc usw
 
 
+function holeuserdate( $dbconn, $uid ){
+    
+    $SQL_String = "SELECT kunde.Anrede, ".
+                         "kunde.Titel, ".
+                         "kunde.Vorname, ".
+                         "kunde.Nachname, ".
+                         "kunde.Strasse, ".
+                         "kunde.PLZ, ".
+                         "kunde.Ort, ".
+                         "kontakt.Kontakt, ".
+                         "kontakt.Bemerkung, ".
+                         "kontakt.Art_ID ".
+                  "FROM kontakt INNER JOIN kunde ON kontakt.Kunden_ID = kunde.Kunden_ID ".
+                  "WHERE kontakt.Kunden_ID = ".$uid ;
+    print($SQL_String);
+    $erg = $dbconn->query($SQL_String);
+    if ( !$erg ){
+        echo "<div><b>Abfrage fehlgeschlagen!</b><br />".
+        $sSQL."<br />".
+        $dbconn->errno . ": " . $dbconn->error . "</div>";
+    }    
+    while ( $ds = $erg->fetch_assoc() ) // $array = $erg->fetch_all(); auch moeglich
+    $array[] = $ds;
+      //DebugArr( $array, '$ds' );
+      //print($array[0]['Login']);
+    return $array;
+}
+
+function holeuserlogin( $dbconn, $uid ){
+    
+    $SQL_String = "SELECT login.Login ".
+                  "FROM Login ".
+                  "WHERE Kunden_ID = ".$uid ;
+    //print($SQL_String);
+    $erg = $dbconn->query($SQL_String);
+    if ( !$erg ){
+        echo "<div><b>Abfrage fehlgeschlagen!</b><br />".
+        $sSQL."<br />".
+        $dbconn->errno . ": " . $dbconn->error . "</div>";
+    }    
+    while ( $ds = $erg->fetch_assoc() ) // $array = $erg->fetch_all(); auch moeglich
+    $array[] = $ds;
+      //DebugArr( $array, '$ds' );
+      //print($array[0]['Login']);
+    return $array[0]['Login'];
+}
 
 
+/*! \brief Holt eine UserID anhand der Login-Daten aus der DB
 
+    \param $dbconn eine gültige DB-Verbindung vom Typ mysqli
+    \param $LoginArr    das Array, wo die Anmeldedaten herkommen
+    \return eine UserID als Ganzzahl im Erfolgsfall
+            NULL sonst
+*/
+// Hole die Stil Richtungen
+function holekontaktart( $dbconn ){
+$sSQL = "SELECT kontaktart.Bezeichnung , kontaktart.Art_ID FROM kontaktart";
 
+    $erg = $dbconn->query( $sSQL );               // 3 SQL-Abfrage abschicken und 3b Ergebnis entgegennehmen
+
+    if ( !$erg ){
+        echo "<div><b>Abfrage fehlgeschlagen!</b><br />".
+        $sSQL."<br />".
+        $dbconn->errno . ": " . $dbconn->error . "</div>";
+    }
+    
+                      // 4 einen "Datensatz" fetch-en
+     while ( $ds = $erg->fetch_assoc() ) // $array = $erg->fetch_all(); auch moeglich
+    $array[] = $ds;
+//  DebugArr( $array, '$ds' );
+    return $array;
+}
 
 /*! \brief Holt eine UserID anhand der Login-Daten aus der DB
 
@@ -28,7 +97,7 @@ function holeStielrichtung( $dbconn ){       // SQL-Abfrage zusammenbasteln
         $dbconn->errno . ": " . $dbconn->error . "</div>";
     }
     
-     $erg->fetch_assoc();                  // 4	einen "Datensatz" fetch-en
+    
      while ( $ds = $erg->fetch_assoc() ) // $array = $erg->fetch_all(); auch moeglich
     $array[] = $ds;
 //        DebugArr( $array, '$ds' );
@@ -44,7 +113,7 @@ function holeStielrichtung( $dbconn ){       // SQL-Abfrage zusammenbasteln
 // Hole die Künstler 
 function holeKuenstler( $dbconn ){       // SQL-Abfrage zusammenbasteln
 
-    $sSQL = 'SELECT kuenstler.Kuenstlername, (SELECT COUNT(*) FROM kunstwerk WHERE Kuenstler_ID = kuenstler.Kunden_ID ) AS Anzahl FROM kuenstler';
+    $sSQL = 'SELECT kuenstler.Kuenstlername, kuenstler.Kunden_ID, (SELECT COUNT(*) FROM kunstwerk WHERE Kuenstler_ID = kuenstler.Kunden_ID ) AS Anzahl FROM kuenstler';
 
     $erg = $dbconn->query( $sSQL );               // 3 SQL-Abfrage abschicken und 3b Ergebnis entgegennehmen
 
@@ -54,10 +123,10 @@ function holeKuenstler( $dbconn ){       // SQL-Abfrage zusammenbasteln
         $dbconn->errno . ": " . $dbconn->error . "</div>";
     }
     
-     $erg->fetch_assoc();                  // 4 einen "Datensatz" fetch-en
+     
      while ( $ds = $erg->fetch_assoc() ) // $array = $erg->fetch_all(); auch moeglich
     $array[] = $ds;
- //       DebugArr( $array, '$ds' );
+   //     DebugArr( $array, '$ds' );
     return $array;
 }
 /*! \brief Holt eine UserID anhand der Login-Daten aus der DB
@@ -127,15 +196,32 @@ CHEAT;
 */
 function GetUIDByLogin( $dbconn, $clpw, $cluser ) { 
 
+  $pre_stmt = $dbconn->stmt_init();
     // SQL-Abfrage zusammenbasteln
   $SQL_String = "SELECT Kunden_ID".
                 " FROM login".
-                " WHERE Login = '".$cluser.
-                "' AND Passwort =SHA2('" . $clpw . "', 256)";
-        print($SQL_String);
+                " WHERE Login = ? AND Passwort = SHA2( ?, 256)";
+      print($SQL_String);
   // 3 SQL-Abfrage abschicken und 3b Ergebnis entgegennehmen
-  $erg = $dbconn->query( $SQL_String );
-
+  if( $pre_stmt->prepare( $SQL_String ) ){
+      $pre_stmt->bind_param( "ss", $cluser, $clpw );
+      $pre_stmt->execute();
+      $pre_stmt->bind_result( $uid );
+    if ( $pre_stmt->fetch() )
+      {
+        return $uid;
+      }
+      else
+      {
+        return false;
+      }
+  }
+  else {
+    echo "<div><b>Abfrage fehlgeschlagen!</b><br />".
+      $SQL_String."<br />".
+      $dbconn->errno . ": " . $dbconn->error . "</div>";
+  }
+/*
   if ( !$erg )
   {
     echo "<div><b>Abfrage fehlgeschlagen!</b><br />".
@@ -152,5 +238,94 @@ function GetUIDByLogin( $dbconn, $clpw, $cluser ) {
     $uid = $ds['Kunden_ID'];
 
   return $uid;
+*/
 }
+
+
+function checkusername( $dbconn , $uname){
+  
+  $SQL_String = "SELECT login.Login FROM login ";
+    
+  $erg = $dbconn->query( $SQL_String );
+  if ( !$erg )
+  {
+    echo "<div><b>Abfrage fehlgeschlagen!</b><br />".
+      $SQL_String."<br />".
+      $dbconn->errno . ": " . $dbconn->error . "</div>";
+  }
+  while ( $ds = $erg->fetch_assoc() ) // $array = $erg->fetch_all(); auch moeglich
+      if ($uname === $ds['Login']) return false;
+      
+   //DebugArr( $array, '$ds' );
+   return true;
+}
+
+
+
+function insertkontakt( $dbconn, $last, $art_id, $clkom, $clbem ){
+    $SQL_String = 'INSERT INTO Kontakt (Art_ID, Kunden_ID, Kontakt, Bemerkung)'.
+                  'VALUES ('.$art_id.', '.$last.', "'. $clkom.'", "'.$clbem.'")';
+    print("$SQL_String");
+    $dbconn->query( $SQL_String );
+}
+
+
+
+
+
+function insertkunde( $dbconn, $clusername, $clpwd, $cltitel, $clvn, $clnn, $clstr, $clplz, $clort ){
+
+  $pre_stmt = $dbconn->stmt_init();
+  
+  $SQL_String = 'INSERT INTO kunde (Titel, Vorname, Nachname, Strasse, PLZ, ORT)'.
+                ' VALUES (?, ?, ?, ?, ?, ? )';
+
+  if ( $pre_stmt->prepare( $SQL_String ) )
+    {
+      $pre_stmt->bind_param("ssssis", $cltitel, $clvn, $clnn, $clstr, $clplz, $clort);
+      $pre_stmt->execute();
+      $last_id =  $pre_stmt->insert_id;
+    }
+    else
+    { // Abfrage fehlgeschlagen
+      echo "<div><b>Abfrage fehlgeschlagen!</b><br />".
+        $SQL_String."<br />".
+        $pre_stmt->errno . ": " . $pre_stmt->error . "</div>";
+    }
+
+  $SQL_String = "INSERT INTO login ( Kunden_ID, Login, reg_IP, Passwort )".
+                'VALUES ( '.$last_id.', "'.$clusername.'", "22.22.22.33", SHA2("'.$clpwd.'", 256) )';
+    print("$SQL_String");
+    $dbconn->query( $SQL_String );
+ 
+return $last_id;
+}
+
+function insertkuenstler(){
+  if (!empty($_POST['Kuenstlername']) &&
+      !empty($_POST['IBAN']) ){
+    $clkunstname = htmlentities($_POST['Kuenstlername']);
+    $clvita = htmlentities($_POST['Vita']);
+    $clIBAN = htmlentities($_POST['IBAN']);
+    $clBIG = htmlentities($_POST['BIG']);
+    
+    $pre_stmt = $dbconn->stmt_init();
+    $SQL_String = 'INSERT INTO Kuenstler '.
+                  "VALUES ( ".$_SESSION['save']['uid'].", ".$clkunstname.", ".$clvita.", ".$clIBAN.", ".$clBIC.")";
+
+  }
+  else return 'Daten nicht vollständig';
+return '';
+}
+
+
+
+
+
+
+
+
+
+
+
     ?>

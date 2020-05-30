@@ -3,7 +3,23 @@
 // Nicht die Funktionsbeschreibungen vergessen: Brief param etc usw
 
 
-
+function htmlkontaktart( $fetch ){
+    $output = '';
+    $i = 0;
+    foreach( $fetch AS $fetcho ){
+        //$output .= '<label for="'. $fetcho['Bezeichnung'] .'\"><b>'. $fetcho['Bezeichnung'] ."</b></label>\n\t\t\t\t".
+        //          '<input type="text" name="'. $fetcho['Bezeichnung'] ."\"/>\n\n\t\t\t\t";
+    
+        $output .=  "\n\n\t\t\t".'<h3>' .$fetcho['Bezeichnung']. '</h3>'.
+                    "\n\t\t\t\t".'<label for="' .$fetcho['Bezeichnung'].'-kontakt\"><b>'. $fetcho['Bezeichnung'].' Kontakt</b></label>'.
+                    "\n\t\t\t\t".'<input type="text" name="'. $fetcho['Bezeichnung'] .'-kontakt" value=""/>'.
+                    "\n\t\t\t\t".'<label for="' .$fetcho['Bezeichnung'].'-bemerkung\"><b>'. $fetcho['Bezeichnung'].' Bemerkung</b></label>'.
+                    "\n\t\t\t\t".'<input type="text" name="'. $fetcho['Bezeichnung'] .'-bemerkung">';
+    $i = $i + 1;
+        // <?php echo $userdate[0]['Kontakt'] 
+    }
+    return $output;
+}
 
 
 function htmlOutput( $aKategorien ){

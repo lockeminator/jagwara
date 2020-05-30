@@ -8,12 +8,7 @@ $dbconn = connectKunstDB( 'gast' );
 
 $StilDS = holeStielrichtung( $dbconn );
 $KuenstlerDS = holeKuenstler( $dbconn );
-
-
-
 $KunstwerkDS = holeKunstwerke( $dbconn );
-
-
 ?>
 
 <div class="section container">   
