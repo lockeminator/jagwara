@@ -67,11 +67,6 @@ if(isset($_POST['regsenden']))
                                            <span>Kunstwerke</span>
                                        </a>
                                     </li>  
-                                    <li id="li_kuenstler">
-                                       <a href="<?php echo getUrl();?>index.php?page=kuenstler&<?php echo SID; ?>" <?php if( $page == "kuenstler" ) echo 'class="active"'; ?> >
-                                           <span>Kuenstler</span>
-                                       </a>
-                                    </li>
                                     <li id="li_wir">
                                        <a href="<?php echo getUrl();?>index.php?page=wir&<?php echo SID; ?>" <?php if( $page == "wir" ) echo 'class="active"'; ?> >
                                            <span>&Uuml;ber uns</span>

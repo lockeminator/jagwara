@@ -60,7 +60,7 @@ function holeuserlogin( $dbconn, $uid ){
 */
 // Hole die Stil Richtungen
 function holekontaktart( $dbconn ){
-$sSQL = "SELECT kontaktart.Bezeichnung , kontaktart.Art_ID FROM kontaktart";
+    $sSQL = "SELECT kontaktart.Bezeichnung , kontaktart.Art_ID FROM kontaktart";
 
     $erg = $dbconn->query( $sSQL );               // 3 SQL-Abfrage abschicken und 3b Ergebnis entgegennehmen
 
@@ -69,10 +69,9 @@ $sSQL = "SELECT kontaktart.Bezeichnung , kontaktart.Art_ID FROM kontaktart";
         $sSQL."<br />".
         $dbconn->errno . ": " . $dbconn->error . "</div>";
     }
-    
                       // 4 einen "Datensatz" fetch-en
      while ( $ds = $erg->fetch_assoc() ) // $array = $erg->fetch_all(); auch moeglich
-    $array[] = $ds;
+        $array[] = $ds;
 //  DebugArr( $array, '$ds' );
     return $array;
 }

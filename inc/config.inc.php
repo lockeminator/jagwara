@@ -2,7 +2,7 @@
 /* Hier bitte nur Page-Funktionen einbauen
  * Funktionen für Content bitte in fun.inc.php (Uebersicht)
  */
-define('PATH', dirname($_SERVER['SCRIPT_FILENAME']));
+    define('__PATH__', dirname($_SERVER['SCRIPT_FILENAME']));
 
     if( isset($_GET['page']) ){
        $page = $_GET['page'] ;
@@ -46,9 +46,9 @@ define ( "KUNST_DB",   "20ss_tid4_kuenstlerdb" );
         $phpSelf = dirname($_SERVER['PHP_SELF']);   // Pfad und Dateinamen (/ordner/bilder/bild.jpg)
         
         if( $relative ) {
-                return $phpSelf . '/';
-        } else {
-                return 'https://' . $srvName . $phpSelf . '/';
+            return $phpSelf . '/';
+        }else{
+            return 'https://' . $srvName . $phpSelf . '/';
         }
     }
     
@@ -57,34 +57,33 @@ function navigation( $page ){
     $file = '';
     
     switch( $page ){
-        case "home": $file = "home.tpl.php";
+        case "home": $file              = "home.tpl.php";
             break;
-        case "kunstwerke": $file = "kunstwerke.php";
+        case "kunstwerke": $file        = "kunstwerke.php";
             break;
-        case "kuenstler": $file = "kuenstler.tpl.php";
+        case "kuenstler": $file         = "kuenstler.tpl.php";
             break;
-        case "wir": $file = "wir.tpl.php";
+        case "wir": $file               = "wir.tpl.php";
             break;
-        case "registrieren": $file = "registrieren.tpl.php";
+        case "registrieren": $file      = "registrieren.tpl.php";
             break;
-        
-        case "KuenstlerStatus": $file = "kunststatus.tpl.php";
+        case "KuenstlerStatus": $file   = "kunststatus.tpl.php";
+            break;   
+        case "login": $file             = "login.tpl.php";
             break;
-        
-        case "login": $file = "login.tpl.php";
+        case "logout": $file            = "logout.tpl.php";
+            session_destroy();
+            header("Location: ./index.php?page=home&".session_name()."=".session_id() );
             break;
-        case "logout": $file = "logout.tpl.php";
-
-                        session_destroy();
-                        header("Location: ./index.php?page=home&".session_name()."=".session_id() );
+        case "kontakt": $file           = "kontakt.tpl.php";
             break;
-        case "kontakt": $file = "kontakt.tpl.php";
+        case "datenschutz": $file       = "datenschutz.tpl.php";
             break;
-        case "datenschutz": $file = "datenschutz.tpl.php";
+        case "impressum": $file         = "impressum.tpl.php";
             break;
-        case "impressum": $file = "impressum.tpl.php";
+        case "einzelansicht": $file     = "einzelansicht.tpl.php";
             break;
-        default: $file = "err.tpl.php";
+        default: $file                  = "err.tpl.php";
     }
     return $file;
 }

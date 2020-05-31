@@ -10,8 +10,10 @@ function htmlkontaktart( $fetch ){
         //$output .= '<label for="'. $fetcho['Bezeichnung'] .'\"><b>'. $fetcho['Bezeichnung'] ."</b></label>\n\t\t\t\t".
         //          '<input type="text" name="'. $fetcho['Bezeichnung'] ."\"/>\n\n\t\t\t\t";
     
-        $output .=  "\n\n\t\t\t".'<h3>' .$fetcho['Bezeichnung']. '</h3>'.
-                    "\n\t\t\t\t".'<label for="' .$fetcho['Bezeichnung'].'-kontakt\"><b>'. $fetcho['Bezeichnung'].' Kontakt</b></label>'.
+//          "\n\n\t\t\t".'<h3>' .$fetcho['Bezeichnung']. '</h3>'.
+// Die h3 wuerde ich gern canceln, Zu viele headlines machen kirre - cv
+        
+          $output .=          "\n\t\t\t\t".'<label for="' .$fetcho['Bezeichnung'].'-kontakt\"><b>'. $fetcho['Bezeichnung'].' Kontakt</b></label>'.
                     "\n\t\t\t\t".'<input type="text" name="'. $fetcho['Bezeichnung'] .'-kontakt" value=""/>'.
                     "\n\t\t\t\t".'<label for="' .$fetcho['Bezeichnung'].'-bemerkung\"><b>'. $fetcho['Bezeichnung'].' Bemerkung</b></label>'.
                     "\n\t\t\t\t".'<input type="text" name="'. $fetcho['Bezeichnung'] .'-bemerkung">';

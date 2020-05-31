@@ -16,9 +16,11 @@ if (isset($_POST['regkuenstler']) )
             <h1 class="center">Registrieren</h1>
                 <?php if(isset($Errorstring)) echo $err = ErrorDiv($Errorstring); ?>
 
-            <form method="post" action="<?php echo getUrl(); ?>index.php?page=KuenstlerStatus&<?php echo SID; ?>">
-                        <div class="input">
-                	<label for="Kuestlername"><b>Künstlername</b></label>
+            <form class="regularForm" method="post" action="<?php echo getUrl(); ?>index.php?page=KuenstlerStatus">
+                <div class="input">
+                    <input type="hidden" name="<?php echo  session_name(); ?>" value="<?php echo session_name();?>" />
+                    
+                    <label for="Kuestlername"><b>Künstlername</b></label>
                     <input type="text" name="Kuenstlername" value=""/>
 
                     <label for="Vita"><b>Geschichte</b></label>
@@ -29,8 +31,8 @@ if (isset($_POST['regkuenstler']) )
 
                     <label for="BIC"><b>BIC</b></label>
                     <input type="text" name="BIC" value=""/>
-
-
+                </div>
+                <div class="buttonrow">
                 	<input type="submit" name="regkuenstler" value="REGRESTRIEREN" />
             	</div>
             </form>

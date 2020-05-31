@@ -1,3 +1,20 @@
+
+ul.factsKuenstler{
+    padding: 0 25px;
+}
+ul.factsKuenstler li > span { 
+    font-weight: bold;
+}
+ul.factsKuenstler li:nth-child(2n) {
+    padding-bottom: 8px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 8px;
+}
+
+
+
+
+
 h1, h2, h3, h4, h5{
     margin: 40px 15px 40px 15px;
     text-align: center;
@@ -7,8 +24,6 @@ figure{
     padding:0;
     margin: 0;
 }
-
-
 
 .content-kunstw div{
     margin-bottom: 40px;
@@ -26,9 +41,11 @@ figure{
     color:#00ff00;
 }
 .isOut{
-
     color:red;
 }
+
+
+
 
 /* Impressum */
 
@@ -140,17 +157,18 @@ background: url(../img/layout/maps.png) repeat center #fff;
 
 /* Das Kontaktformular */
 
-form{
+form.regularForm{
     width: 370px;
     padding: 20px;
     width: 100%;
 }
-label{ /* Beschriftung auf eigener Zeile */
+form.regularForm div.input label{
   display: block;
-  cursor: pointer; /* Mauszeiger wird zur Hand */
 }
-input,
-textarea{
+
+form.regularForm div.input input,
+form.regularForm div.input textarea,
+form.regularForm div.fieldBox select{
     font-family: verdana, sans-serif;
     font-size: 100%;
     width:100%;
@@ -163,37 +181,45 @@ textarea{
     background-color: #eee;
     border-bottom: 1px solid #eee;
 }
-textarea{
+form.regularForm div.textarea{
     height: 10em;
-    
 }
-input:focus,
-input:hover,
-textarea:hover,
-textarea:focus{
+form.regularForm div.input input:focus,
+form.regularForm div.input input:hover,
+form.regularForm div.input textarea:hover,
+form.regularForm div.input textarea:focus{
     background-color: #fff;
     border:0;
     border-bottom: 1px solid #aaa;
 }
 
 #gkarte iframe{
-    
     height: 400px;
     width: 100%;
 }
-input#submitAbDamit{
+form.regularForm div.buttonrow input.submitAbDamit{
     background: #eee;
-    color: #aaa;
+    color: #000;
     border: 1px solid #aaa;
     border-radius: 5px; 
     cursor: pointer;
+    width: 100%;
+    padding: 5px 10px;
 }
-input#submitAbDamit:hover{
-    background: #eee;
+form.regularForm div.buttonrow input.submitAbDamit:hover{
+    background: #17c300;
     color: #000;
     border: 1px solid #000;
 }
+
+
+
+
+
+
+
 /* Tabellen Kontakt */
+
 #tableKontakt table{
     border-collapse: collapse;
     width: 100%;
@@ -231,7 +257,10 @@ input#submitAbDamit:hover{
 
 
 
+
+
 /* Table Responsive */
+
 
 #respoTable{
     box-sizing:border-box;
@@ -298,6 +327,9 @@ table#respoTable{
         margin:-1em 1em -1em -1em;
     }
 }
+
+
+
 
 /* kunstwerke */
 

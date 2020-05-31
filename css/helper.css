@@ -25,7 +25,7 @@
 .justify { text-align: justify; }   /* Block */
 .start   { text-align: start; }
 .end     { text-align: end; }       /* erbt die Ausrichtung vom Elternelement */
-.redFlag{
+.red{
     color:#f00;
 }
 .img-left{

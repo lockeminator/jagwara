@@ -5,13 +5,6 @@
 
 
 
-
-
-
-
-
-
-
 function LoginComplete(){
    if ( !empty($_POST['uname']) && !empty($_POST['passw'])   )  
     {
