@@ -402,12 +402,112 @@ function updatekuenstler(){
 return '';
 }
 
+function holeeinKunstwerke( $dbconn ){       // SQL-Abfrage zusammenbasteln
+
+$sSQL = <<<CHEAT
+
+SELECT  Kunstwerk.Titel,  
+        Kunstwerk.Image,
+        Kunstwerk.Hoehe,
+        Kunstwerk.Breite,
+        Kunstwerk.Preis, 
+        Kunstwerk.Kauf_Zeitstempel,  
+        Kunstwerk.Gewicht, 
+        Kunstwerk.Kuenstler_ID,
+        Kunstwerk.Beschreibung,
+        Kunstwerk.Herstelldatum,
+        Kunstwerk.Kunstwerk_ID,
+        Kategorie.Stilrichtung,
+        kuenstler.Kuenstlername,
+        kuenstler.Vita
+FROM eingeordnet    INNER JOIN Kategorie ON eingeordnet.Kategorie_ID = Kategorie.Kategorie_ID
+                    INNER JOIN Kunstwerk ON eingeordnet.Kunstwerk_ID = Kunstwerk.Kunstwerk_ID
+                    INNER JOIN kuenstler ON Kunstwerk.Kuenstler_ID = kuenstler.Kunden_ID
+CHEAT;
+      $sSQL .= ' WHERE Kunstwerk.Kunstwerk_ID="'. $_GET['werk'].'"'; 
+    $erg = $dbconn->query( $sSQL );               // 3 SQL-Abfrage abschicken und 3b Ergebnis entgegennehmen
+    // print("$sSQL");
+    if ( !$erg ){
+        echo "<div><b>Abfrage fehlgeschlagen!</b><br />".
+        $sSQL."<br />".
+        $dbconn->errno . ": " . $dbconn->error . "</div>";
+    }
+    
+      $ds = $erg->fetch_assoc();
+       
+    //  DebugArr( $ds );
+    return $ds;
+}
 
 
+function getwarenkorb( $dbconn ){
+  $array[] = '';
+  $SQL = <<<CHEAT
+SELECT  Kunstwerk.Image,
+        Kunstwerk.Titel, 
+        Kunstwerk.Kauf_Zeitstempel, 
+        Kunstwerk.Preis, 
+        Kategorie.Stilrichtung,
+        kuenstler.Kuenstlername,
+        kuenstler.Kunden_ID,
+        Kunstwerk.Breite,
+        Kunstwerk.Hoehe,
+        Kunstwerk.Kunstwerk_ID
+FROM warenkorb  INNER JOIN Kunstwerk ON warenkorb.Kunstwerk_ID = Kunstwerk.Kunstwerk_ID
+                INNER JOIN Kuenstler ON Kunstwerk.Kuenstler_ID = Kuenstler.Kunden_ID        
+                INNER JOIN eingeordnet ON eingeordnet.Kunstwerk_ID = Kunstwerk.Kunstwerk_ID
+                INNER JOIN Kategorie ON eingeordnet.Kategorie_ID = Kategorie.Kategorie_ID
+CHEAT;
+//print("$SQL");
+$erg = $dbconn->query( $SQL );
+  if ( !$erg ){
+          echo "<div><b>Abfrage fehlgeschlagen!</b><br />".
+          $SQL."<br />".
+          $dbconn->errno . ": " . $dbconn->error . "</div>";
+      }
+      
+         $array = $erg->fetch_all();
+          
+         
+         
+      // DebugArr( $array );
+      return $array;
+  }
 
+function getPorduct($conn){
+    $sql='SELECT * FROM warenkorb WHERE Kunden_ID='. $_SESSION['save']['uid']; // suche nach ID in DB
+    // print("$sql");
+    $result= $conn->query( "$sql" );         
+          
+    if ( !$result ){
+            echo "<div><b>Abfrage fehlgeschlagen!</b><br />".
+            $sql."<br />".
+            $conn->errno . ": " . $conn->error . "</div>";
+        }
+    else {    
+    $row=$result->fetch_assoc(); 
+    $_SESSION['warenkorb'][]=$row;
+    }
+}
 
-
-
+function insertProdct($conn){
+    if(isset($_POST['kuenstler'])){
+     
+        $pre_stmt = $conn->stmt_init();
+        $isql = 'INSERT INTO warenkorb ( Kunstwerk_ID , Kunden_ID ) VALUES ( ?, ?)';
+        if ( $pre_stmt->prepare( $isql ) )
+        {
+          $pre_stmt->bind_param("ss", $_POST['Kaufe'], $_SESSION['save']['uid']);
+          $pre_stmt->execute();
+        }
+        else
+        { // Abfrage fehlgeschlagen
+          echo "<div><b>Abfrage fehlgeschlagen!</b><br />".
+            $isql."<br />".
+            $pre_stmt->errno . ": " . $pre_stmt->error . "</div>";
+        }
+    }
+}
 
 function holeeinKunstwerke( $dbconn ){
 $sSQL = <<<CHEAT
