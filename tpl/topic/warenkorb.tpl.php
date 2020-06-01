@@ -1,25 +1,33 @@
 <?Php
-    $_SESSION['warenkorb']=[];
-    
-    $sql="SELECT * FROM warenkorb WHERE Kunden_ID=''"; // suche nach ID in DB
-    $result= $conn->query($sql);         
-    $row=$result->fetch_assoc();       
+  //  DebugArr( $_GET );
+  //  DebugArr( $_POST );
+  // DebugArr( $_SESSION ); 
 
-    $_SESSION['warenkorb'][]=$row;
+    $_SESSION['warenkorb']=[];
+
+    $conn = connectKunstDB( 'gast' );
     
+    // Anzeigen von Produkten
+    getPorduct($conn);
+    // Einfügen von Produkten
+    insertProdct($conn);
+    // was ist im warenkorb ist anzeigen   
+    $_SESSION['warenkorb'] = getwarenkorb( $conn );
+    
+
 
     // LÖSCHEN VON PRODUKTEN
     if( isset($_GET['delete']) ){ 
-        for($i=0; $i<count($_SESSION['warenkorb']); $i++){
-            $tempID =  $_SESSION['warenkorb'][$i]['id'];
+        for($i=0; $i<count($_SESSION['warenkorb']['1']); $i++){
+            $tempID = $_SESSION['warenkorb']['1'][$i]['9'];
             if( $_GET['delete'] == $tempID ){
                 // echo "löschen: <br>";
-                array_splice($_SESSION['warenkorb'],$i,1);
+                array_splice($_SESSION['warenkorb']['1'],$i,1);
             }
         }
     }   
 ?>
-
+Parse error: syntax error, unexpected 'warenkorb' (T_STRING) in C:\Users\Lottar\Desktop\xampp\htdocs\jagwara\tpl\topic\warenkorb.tpl.php on line 94
 <div class="container section">
     <div class="row">
         <div class="col-sm-12">
@@ -42,23 +50,31 @@
                                 </tfoot>
                                 <tbody> 
                                     <?php
+                                        
+                                       
+                                        
+
                                         $aData = $_SESSION['warenkorb'];
+                                        // DebugArr($aData);
                                         $htmlOutput = "";
                                         $gesamtPreis=0.0;
                                         for( $i=0; $i<count($aData);$i++ ){
                                             $htmlOutput .= "<tr>";
-                                                $htmlOutput .= "<td>ID</td>";
-                                                $htmlOutput .= "<td>Name</td>";
-                                                $htmlOutput .= "<td><a href='warenkorb.php?delete=\"Produkt_ID\"'>Löschen</a></td>";
-                                                $htmlOutput .= "<td>333 €</td>";
+                                                $htmlOutput .= '<td>'.$aData[$i]['9'].'</td>';
+                                                $htmlOutput .= '<td>'.$aData[$i]['1'].'</td>';
+                                                $htmlOutput .= '<td><a href="./index.php?page=warenkorb&delete='.$aData[$i]['9']. '&' .session_name()."=".session_id(). '">Löschen</a></td>';
+                                                $htmlOutput .= '<td>'.$aData[$i]['3'].' €</td>';
                                             $htmlOutput .= "</tr>";
-                                            $gesamtPreis += $aData[$i]['preis'];
+                                            $gesamtPreis += $aData[$i]['3'];
                                         }
+                                        
+
+
                                         if($htmlOutput == ""){
                                             echo "<tr><td colspan='5'>Dein Warenkorb is ganz leer :-( <br> <a href='index.php'> Jetzt einkaufen</a> :-D</tr></td>"; 
                                         }else{
                                             echo $htmlOutput;
-                                            $gesPreis       =  sprintf("%.2f",$gesamtPreis);
+                                            $gesPreis       = sprintf("%.2f",$gesamtPreis);
                                             $MwSt           = sprintf("%.2f", $gesPreis * 0.19);
                                             $PreiMitMwSt    = sprintf("%.2f", $gesPreis + $MwSt);
                                             echo "<tr class='tr2'><td colspan='4'>&nbsp;</td><td >Summe: ".$gesamtPreis." €</td></tr>";

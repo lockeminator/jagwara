@@ -1,8 +1,8 @@
 <?php 
 
-DebugArr( $_GET );
-DebugArr( $_POST );
-DebugArr( $_SESSION ); 
+//DebugArr( $_GET );
+//DebugArr( $_POST );
+//DebugArr( $_SESSION ); 
 $button = '';
 
 
@@ -10,26 +10,10 @@ $dbconnl = connectKunstDB( 'login' );
 
 $dbconn = connectKunstDB( 'kunde' );
 
-if( isset($_SESSION['User']) && $_SESSION['User'] === 'isIN')
-    {
-        $userlogin = holeuserlogin( $dbconnl , $_SESSION['save']['uid'] );
-        $userdate = holeuserdate( $dbconn , $_SESSION['save']['uid'] );
-    }
-    else{
-        $userdate[0]['Titel'] = '';
-        $userdate[0]['Vorname'] = '';
-        $userdate[0]['Nachname'] = '';
-        $userdate[0]['Anrede'] = '';
-        $userdate[0]['Strasse'] = '';
-        $userdate[0]['PLZ'] = '';
-        $userdate[0]['Ort'] = '';
-        $userdate[0]['Frau']    = '';
-        $userdate[0]['Herr']    = '';
-        $userdate[0]['Divers']  = '';
+$userdate = getuserdatabyisIN($dbconn);
 
-        $userlogin = '';
-        
-    }
+$userlogin = getuserloginbyisIN($dbconnl);
+
 $kontaktart =  htmlkontaktart( holekontaktart( $dbconn ) );
 ?>
 
@@ -102,7 +86,7 @@ $kontaktart =  htmlkontaktart( holekontaktart( $dbconn ) );
                     <div class="buttonrow">
                         <?php 
                             if( isset($_SESSION['User']) && $_SESSION['User'] === 'isIN') {
-                                echo '<input class="submitAbDamit" type="submit" name="regupdate" value="REGRESTRIERUNG UPDATEEN" />';
+                                echo '<input class="submitAbDamit" type="submit" name="regupdate" value="__REGRESTRIERUNG UPDATEEN__" />';
                                 }
                             else { 
                                 echo '<input class="submitAbDamit" type="submit" name="regsenden" value="REGRESTRIEREN" />';
@@ -111,12 +95,7 @@ $kontaktart =  htmlkontaktart( holekontaktart( $dbconn ) );
                     </div>
                 </form>
             <?php 
-            if( isset($_SESSION['User']) && $_SESSION['User'] === 'isIN'){
-                $button .= '<form method="post" action="./index.php?page=KuenstlerStatus&'.session_name().'='.session_id().'">';
-                $button .= '<input type="submit" name="kustupdate" value="Künstel werden" /></form>';
-                $button .= '</form>'; 
-            }
-            echo $button;
+                echo $button = getkuenstlerbotton();
             ?>              
             <div class="col-sm-3">&nbsp;</div>
         </div>

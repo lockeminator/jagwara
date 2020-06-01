@@ -7,6 +7,8 @@ $Errorstring = '';
 
 if (isset($_POST['regkuenstler']) )
 	$Errorstring = insertkuenstler();
+
+
 ?>
 <div class="container section">
     <div class="row">

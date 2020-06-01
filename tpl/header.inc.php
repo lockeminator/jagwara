@@ -1,4 +1,5 @@
 <?php 
+$out = '';
 
 if (isset($_POST['loginsenden']))
     $Errorstring = LoginComplete();
@@ -6,7 +7,22 @@ if (isset($_POST['loginsenden']))
 if(isset($_POST['regsenden']))
     $Errorstring = Registrieren( );
 
-
+if( isset( $_SESSION['save']['uid'] ) ){
+  $conn = connectKunstDB( 'gast' );
+      $sql='SELECT COUNT(*) AS Anzahl FROM warenkorb WHERE Kunden_ID='. $_SESSION['save']['uid']; // suche nach ID in DB
+      // print("$sql");
+      $result= $conn->query( "$sql" );         
+            
+      if ( !$result ){
+              echo "<div><b>Abfrage fehlgeschlagen!</b><br />".
+              $sql."<br />".
+              $conn->errno . ": " . $conn->error . "</div>";
+          }
+      else {    
+      $row=$result->fetch_assoc(); 
+      
+      }
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -92,8 +108,14 @@ if(isset($_POST['regsenden']))
                                                <span>Logout</span>
                                            </a>
                                         </li>
-                                
-                                <?php }else{ ?>
+                                <?php  
+                                        if(isset($_SESSION['save']['uid'])) {
+                                        $out .= '<li id="li_warenkorb">'.
+                                          $out .= '<a href="index.php?page=warenkorb&' .session_name().'=' .session_id().'"><span>&#10177; ('. $row['Anzahl'] .')</span></a>'.
+                                        $out .= '</li>';
+                                        echo $out;
+                                        }
+                                 }else{ ?>
 
                                         <li id="li_registrieren">
                                            <a href="<?php echo getUrl();?>index.php?page=registrieren&<?php echo SID; ?>" <?php if( $page == "registrieren" ) echo 'class="active"'; ?> >
@@ -104,14 +126,13 @@ if(isset($_POST['regsenden']))
                                            <a href="<?php echo getUrl();?>index.php?page=login&<?php echo SID; ?>" <?php if( $page == "login" ) echo 'class="active"'; ?> >
                                                <span>Login</span>
                                            </a>
-                                        </li> 
+                                        </li>
                                 
-                                <?php } ?>
-                                     <li id="li_warenkorb">
-                                       <a href="<?php echo getUrl();?>index.php?page=warenkorb&<?php echo SID; ?>" <?php if( $page == "warenkorb" ) echo 'class="active"'; ?> >
-                                           <span>&#10177; (5)</span>
-                                       </a>
-                                    </li>
+                                <?php  }   ?>
+                                       
+                                    
+                                    
+                                  
                                 </ul>
                             </div>
                         </div>
