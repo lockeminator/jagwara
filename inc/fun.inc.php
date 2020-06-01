@@ -233,14 +233,12 @@ function Registrieren(  ){
                         insertkontakt( $dbconn, $last_id, 1 , $cltelkon, $cltelbem );
                     if( !empty( $clmtelkon ) )
                         insertkontakt( $dbconn, $last_id, 2 , $clmtelkon, $clmtelbem );
-                    if( !empty( $clemakon ) ){
+                    if( !empty( $clemakon ) )
                         insertkontakt( $dbconn, $last_id, 3 , $clemakon, $clemabem );
-                        print("ALHDLAHLD");
-                    }
                     if( !empty( $clfaxkon ) )
                         insertkontakt( $dbconn, $last_id, 4 , $clfaxkon, $clfaxbem );
                     
-                    header("Location: ./index.php?page=login&".session_name()."=".session_id() );
+                     header("Location: ./index.php?page=login&".session_name()."=".session_id() );
 
 
                     
@@ -252,17 +250,88 @@ function Registrieren(  ){
         else $output .= "Benutezername Vergeben oder Fehlerhaft.";
         
 
-        $dbconnl->exit();
-        $dbconn->exit();
-
-
-
+        //$dbconnl->exit();
+        //$dbconn->exit();
     }
 
     else $output .= "Fehlende Anmeldedaten!";
 return $output;
 } 
 
+function regupdate(  ){
+    $output = '';
+    if (!empty($_POST['username']) &&
+        !empty($_POST['ort']) &&
+        !empty($_POST['vname']) &&
+        !empty($_POST['nname']) &&
+        !empty($_POST['str']) &&
+        !empty($_POST['plz']) ){
+
+        $clusername = htmlentities($_POST['username']);
+        $clpwd = htmlentities($_POST['pwd']);
+        $clpwd2 = htmlentities($_POST['pwd2']);
+        $cltitel = htmlentities($_POST['titel']);
+        $clvname = htmlentities($_POST['vname']);
+        $clnname = htmlentities($_POST['nname']);
+        $clstr = htmlentities($_POST['str']);
+        $clplz = htmlentities($_POST['plz']);
+        $clort = htmlentities($_POST['ort']);
+        
+        $cltelkon = htmlentities($_POST['Telefon-kontakt']);
+        $cltelbem = htmlentities($_POST['Telefon-bemerkung']);
+
+        $clmtelkon = htmlentities($_POST['Mobiltelefon-kontakt']);
+        $clmtelbem = htmlentities($_POST['Mobiltelefon-bemerkung']);
+
+        $clemakon = htmlentities($_POST['E-Mail-kontakt']);
+        $clemabem = htmlentities($_POST['E-Mail-bemerkung']);
+
+        $clfaxkon = htmlentities($_POST['Fax-kontakt']);
+        $clfaxbem = htmlentities($_POST['Fax-bemerkung']);
+
+
+        // hier müssten ein paaar abfragen hin regex etc 
+        $dbconnl = connectKunstDB( 'kunde' );
+        print('DB verbindung aufbau');
+        if ( strlen($clusername) <= 32 ){
+            if( $clpwd === $clpwd2 && strlen($clpwd) <= 64 || $clpwd === NULL && $clpwd2 === NULL ){
+                if (strlen($cltitel) <= 20 && strlen($clvname) <= 40 && strlen($clnname) <= 60 && strlen($clstr) <= 60 && strlen($clort) <= 60){
+                    updatekunde( $dbconnl, $clusername, $clpwd, $cltitel, $clvname, $clnname, $clstr, $clplz, $clort );
+                    
+                   
+
+/*
+                    $dbconn = connectKunstDB( 'kunde' );
+                    if( !empty( $cltelkon ) )
+                        insertkontakt( $dbconn, $last_id, 1 , $cltelkon, $cltelbem );
+                    if( !empty( $clmtelkon ) )
+                        insertkontakt( $dbconn, $last_id, 2 , $clmtelkon, $clmtelbem );
+                    if( !empty( $clemakon ) ){
+                        insertkontakt( $dbconn, $last_id, 3 , $clemakon, $clemabem );
+                        print("ALHDLAHLD");
+                    }
+                    if( !empty( $clfaxkon ) )
+                        insertkontakt( $dbconn, $last_id, 4 , $clfaxkon, $clfaxbem );
+                    
+                    header("Location: ./index.php?page=login&".session_name()."=".session_id() );
+*/
+
+                    
+                }
+                else $output .= "Fehlerbehaftete Anmeldedaten."; 
+            }
+            else $output .= "Passwort Wiederholung ist nicht korekt oder zulang!";
+        }
+        else $output .= "Benutezername Vergeben oder Fehlerhaft.";
+        
+
+        //$dbconnl->exit();
+        //$dbconn->exit();
+    }
+
+    else $output .= "Fehlende Anmeldedaten!";
+return $output;
+} 
 
 
 

@@ -1,5 +1,13 @@
  
-<?php // Slider ?>
+<?php // Slider 
+
+$dbconn = connectKunstDB( 'gast' );
+$KunstwerkDS = holeKunstwerke( $dbconn );
+
+
+
+
+?>
 
 
 <div id="imgSlider" class="container">
@@ -35,8 +43,11 @@
 
 
 <?php // Ab hier Content Ausgabe - 2 mal 4 Felder ausgeben ?>
-
-     <div class="section container bg-white">
+    <div class="section container bg-white">
+        <?php echo htmlhomeimgOutput( $KunstwerkDS ); ?>
+    </div>
+<!--
+     
          
          <div class="row  content-kunstw">
             <div class="col-sm-3">
@@ -138,7 +149,7 @@
 
 
 <?php // Content Ausgabe Ende und der Rest is ohne SQL ?>
-
+-->
 
 <div id="home-bg">
      <div class="shopWindow section"> 

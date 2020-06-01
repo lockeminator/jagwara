@@ -15,6 +15,18 @@
 # >>>>>>>>>>>>>>>>>>>>>> Berechtigungen (GRANT)
 # ####################################################################################################
 */
+DROP USER ss20tid4_Admin@'%';     
+DROP USER ss20tid4_Gast@'%';            
+DROP USER ss20tid4_Kunde@'%';           
+DROP USER ss20tid4_Kuenst@'%';          
+DROP USER ss20tid4_Login@'%'; 
+DROP USER ss20tid4_Admin@'localhost';     
+DROP USER ss20tid4_Gast@'localhost';            
+DROP USER ss20tid4_Kunde@'localhost';           
+DROP USER ss20tid4_Kuenst@'localhost';          
+DROP USER ss20tid4_Kuenst@'localhost';            
+
+
 CREATE USER ss20tid4_Admin@'%'            IDENTIFIED BY 'B0SSM4N';
 CREATE USER ss20tid4_Gast@'%'             IDENTIFIED BY 'gast';
 CREATE USER ss20tid4_Kunde@'%'            IDENTIFIED BY '$4zahlenderKunde$4';

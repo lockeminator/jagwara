@@ -1,11 +1,37 @@
 <?php 
-
+$out = '';
+$Errorstring = '';
 if (isset($_POST['loginsenden']))
-    $Errorstring = LoginComplete();
+    $Errorstring .= LoginComplete();
 
 if(isset($_POST['regsenden']))
-    $Errorstring = Registrieren( );
+    $Errorstring .= Registrieren( );
 
+if(isset($_POST['regupdate']))
+    $Errorstring .= regupdate( );
+
+if( isset( $_SESSION['save']['uid'] ) ){
+  $conn = connectKunstDB( 'gast' );
+      $sql='SELECT COUNT(*) AS Anzahl FROM warenkorb WHERE Kunden_ID='. $_SESSION['save']['uid']; // suche nach ID in DB
+      // print("$sql");
+      $result= $conn->query( "$sql" );         
+            
+      if ( !$result ){
+              echo "<div><b>Abfrage fehlgeschlagen!</b><br />".
+              $sql."<br />".
+              $conn->errno . ": " . $conn->error . "</div>";
+          }
+      else {    
+      $row=$result->fetch_assoc(); 
+      
+      }
+// return $row;
+}
+if (isset($_POST['regkuenstler']) )
+  $Errorstring .= insertkuenstler();
+
+if(isset($_POST['updatekuenstler']))
+  $Errorstring .= updatekuenstler();
 
 ?>
 
@@ -92,8 +118,14 @@ if(isset($_POST['regsenden']))
                                                <span>Logout</span>
                                            </a>
                                         </li>
-                                
-                                <?php }else{ ?>
+                                <?php  
+                                        if(isset($_SESSION['save']['uid'])) {
+                                        $out .= '<li id="li_warenkorb">'.
+                                          $out .= '<a href="index.php?page=warenkorb&' .session_name().'=' .session_id().'"><span>&#10177; ('. $row['Anzahl'] .')</span></a>'.
+                                        $out .= '</li>';
+                                        echo $out;
+                                        }
+                                 }else{ ?>
 
                                         <li id="li_registrieren">
                                            <a href="<?php echo getUrl();?>index.php?page=registrieren&<?php echo SID; ?>" <?php if( $page == "registrieren" ) echo 'class="active"'; ?> >
@@ -104,17 +136,17 @@ if(isset($_POST['regsenden']))
                                            <a href="<?php echo getUrl();?>index.php?page=login&<?php echo SID; ?>" <?php if( $page == "login" ) echo 'class="active"'; ?> >
                                                <span>Login</span>
                                            </a>
-                                        </li> 
+                                        </li>
                                 
-                                <?php } ?>
-                                     <li id="li_warenkorb">
-                                       <a href="<?php echo getUrl();?>index.php?page=warenkorb&<?php echo SID; ?>" <?php if( $page == "warenkorb" ) echo 'class="active"'; ?> >
-                                           <span>&#10177; (5)</span>
-                                       </a>
-                                    </li>
+                                <?php  }   ?>
+                                       
+                                    
+                                    
+                                  
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
                 <?php echo "<div id=\"content\">";  // div Ende in footer.inc.php ?>
+                <!-- <p><div class="error"><?php echo $ErrorString; ?></div></p>-->

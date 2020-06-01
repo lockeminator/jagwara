@@ -59,6 +59,8 @@ function navigation( $page ){
     switch( $page ){
         case "home": $file              = "home.tpl.php";
             break;
+        case "warenkorb": $file         = "warenkorb.tpl.php";
+            break;
         case "kunstwerke": $file        = "kunstwerke.php";
             break;
         case "kuenstler": $file         = "kuenstler.tpl.php";
