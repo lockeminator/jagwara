@@ -225,7 +225,7 @@ function Registrieren(  ){
         $dbconnl = connectKunstDB( 'login' );
         if ( strlen($clusername) <= 32 && checkusername( $dbconnl , $clusername ) ){
             if( $clpwd === $clpwd2 && strlen($clpwd) <= 64){
-                if (strlen($cltitel) <= 20 && strlen($clvname) <= 40 && strlen($clnname) <= 60 && strlen($clstr) <= 60 && strlen($clort) <= 60){
+                if ( strlen($cltitel) <= 20 && strlen($clvname) <= 40 && strlen($clnname) <= 60 && strlen($clstr) <= 60 && strlen($clort) <= 60){
                     $last_id = insertkunde( $dbconnl, $clusername, $clpwd, $cltitel, $clvname, $clnname, $clstr, $clplz, $clort );
                     
                     $dbconn = connectKunstDB( 'kunde' );

@@ -22,10 +22,11 @@ $KunstwerkDS = holeKunstwerke( $dbconn );
     <div class="row  content">
         <div class="col-sm-3">
             <select name="sortieren">
-                <option name="SORT" selected="selected" disabled>Sortieren nach</option>
+                <option name="SORT" selected="selected" enabled>Sortieren nach</option>
                 <option value="neueste">Neuheiten</option>
                 <option value="reverse">Preis austeigend</option>
                 <option value="reverse">Preis abteigend</option>
+                <input type="submit" name="sortabschicken" />
             </select>
             <p>Kuenstler</p>
             <form method="post" action="<?php echo getUrl(); ?>index.php?page=kunstwerke">

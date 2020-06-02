@@ -621,12 +621,12 @@ function getuserdatabyisIN($dbconn){
             $userdate = holeuserdate( $dbconn , $_SESSION['save']['uid'] );
         }
         else{
-            $userdate['2'] = '';
-            $userdate['3'] = '';
-            $userdate['4'] = '';
-            $userdate['1'] = '';
-            $userdate['5'] = '';
-            $userdate['6'] = '';
+            $userdate[0]['2'] = '';
+            $userdate[0]['3'] = '';
+            $userdate[0]['4'] = '';
+            $userdate[0]['1'] = '';
+            $userdate[0]['5'] = '';
+            $userdate[0]['6'] = '';
             $userdate[0]['7'] = '';
         //    $userdate[0]['Frau']    = '';
         //    $userdate[0]['Herr']    = '';

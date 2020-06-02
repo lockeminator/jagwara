@@ -1,11 +1,15 @@
 <?php 
-
+/*
 DebugArr( $_GET );
 DebugArr( $_POST );
 DebugArr( $_SESSION ); 
-$Errorstring = '';
+*/
+
+
 $botton ='';
-$dbconn = connectKunstDB( 'kuenstler' ); 
+$dbconn = connectKunstDB( 'kuenstler' );
+
+
 $ds = getkuenstlerdata( $dbconn );
 if (isset($ds['IBAN']))
 $botton = getBilduploadB( $dbconn);

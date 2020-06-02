@@ -7,11 +7,11 @@
                                     ☮ <?php echo date("Y") ." • ".$firma." • ". $strasse." • ".$plz?>
                                 </li>
                                 <li>
-                                    <a href="<?php echo getUrl(); ?>index.php?page=datenschutz" <?php if( $page == "datenschutz" ) echo 'class="active"'; ?>>
+                                    <a href="<?php echo getUrl(); ?>index.php?page=datenschutz&<?php echo SID; ?>" <?php if( $page == "datenschutz" ) echo 'class="active"'; ?>>
                                         <span>Datenschutzerklaerung</span>
                                     </a>
                                      •
-                                    <a href="<?php echo getUrl(); ?>index.php?page=impressum" <?php if( $page == "impress" ) echo 'class="active"'; ?>>
+                                    <a href="<?php echo getUrl(); ?>index.php?page=impressum&<?php echo SID; ?>" <?php if( $page == "impress" ) echo 'class="active"'; ?>>
                                         <span>Impressum </span>
                                     </a>
                                 </li>
@@ -22,7 +22,7 @@
                                     <a href="http://validator.w3.org/check?uri=referer">
                                         <img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Strict" height="21" width="60" />
                                     </a>
-                                     <a href="http://jigsaw.w3.org/css-validator/check/referer">
+                                     <a href="http://jigsaw.w3.org/css-validator/check/referer?<?php echo SID; ?>">
                                         <img src="http://jigsaw.w3.org/css-validator/images/vcss"
                                             alt="CSS ist valide!"
                                             height="21" width="60" />

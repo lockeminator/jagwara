@@ -24,7 +24,7 @@ $KunstwerkDS = holeKunstwerke( $dbconn );
               </li>
               <li>
                 <div id="hero-slide">
-                    <div class="heroA">Sei immer <br />&nbsp;&nbsp;&nbsp;du selbst! *</div>
+                    <div class="heroA">Sei immer <br />&nbsp;&nbsp;&nbsp;du selbst oder besser! *</div>
                     <div class="heroB">*Au&szlig;er du kannst <span>Datentechniker</span> sein, <span class="hidden-lg"><br /></span>dann sei Datentechniker.</div>
                     <img src="./img/slider/img-03.png" alt="">                    
 <!--                    <p class="caption">The third caption</p>-->
@@ -156,7 +156,7 @@ $KunstwerkDS = holeKunstwerke( $dbconn );
          <div>
             <div class="container">
                 <div class="col-sm-12 butten-zu-kunstwerke">
-                    <a href="<?php echo getUrl();?>index.php?page=kunstwerke">
+                    <a href="<?php echo getUrl();?>index.php?page=kunstwerke&<?php echo SID; ?>">
                         <span>Jetzt alle ansehen</span>
                     </a> 
                 </div>

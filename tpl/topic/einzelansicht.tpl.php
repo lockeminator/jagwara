@@ -3,7 +3,7 @@ DebugArr( $_GET );
 DebugArr( $_POST );
 DebugArr( $_SESSION );
 $output = '';
-$ErrorString = '';
+
 
 
 $dbconn = connectKunstDB( 'gast' );

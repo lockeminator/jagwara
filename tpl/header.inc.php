@@ -75,7 +75,7 @@ if(isset($_POST['updatekuenstler']))
                     <div id="navigation">
                         <div class="container">
                             <div class="brand">
-                                <a href="<?php echo getUrl(); ?>" id="logo" title="Herzlich Willkommen">
+                                <a href="<?php echo getUrl(); ?>?<?php echo SID; ?>" id="logo" title="Herzlich Willkommen">
                                     <img src="<?php echo getUrl(); ?>img/layout/stb-logo-200px.png" alt="logo" />
                                 </a>
                             </div>

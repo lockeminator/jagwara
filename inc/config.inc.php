@@ -14,7 +14,7 @@
 # Konstanten für DB Aufbau
 # #################################################
     
-define ( "__MYDEBUG__", true );
+define ( "__MYDEBUG__", false );
 define ( "__INC_DBFUNCS__", 1 );
 define ( "KUNST_HOST", "localhost" );
 define ( "KUNST_DB",   "20ss_tid4_kuenstlerdb" );

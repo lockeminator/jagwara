@@ -1,12 +1,10 @@
 <?php
+DebugArr( $_GET );
+DebugArr( $_POST );
+DebugArr( $_SESSION ); 
 
 
-// DebugArr( $_GET );
-// DebugArr( $_POST );
-// DebugArr( $_SESSION ); 
-$Errorstring = '';
 
-    
 
 ?>
 

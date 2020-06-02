@@ -2,19 +2,19 @@
 
 DebugArr( $_GET );
 DebugArr( $_POST );
-//DebugArr( $SERVER );
+//DebugArr( $_SERVER );
 DebugArr( $_SESSION ); 
+
 $button = '';
-
-
 $dbconnl = connectKunstDB( 'login' );
 
 $dbconn = connectKunstDB( 'kunde' );
 
-if( isset($_SESSION['User']) && $_SESSION['User'] === 'isIN')
+
     $userdate = getuserdatabyisIN($dbconn);
 
-$userlogin = getuserloginbyisIN($dbconnl);
+
+    $userlogin = getuserloginbyisIN($dbconnl);
 
 $kontaktart =  htmlkontaktart( holekontaktart( $dbconn ) );
 ?>
